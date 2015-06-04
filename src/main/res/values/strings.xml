@@ -6,4 +6,23 @@
     <string name="btnShow">Просмотреть</string>
     <string name="addMessage">Оставить заявку на продажу или покупку валюты.</string>
     <string name="btnAdd">Добавить обьявление</string>
+    <string name="chooseCityMessage">Выберите город:</string>
+    <string name="title_activity_add_advertisement">Добавить обьявление</string>
+    <string name="saleMessage">продать</string>
+    <string name="buyMessage">купить</string>
+    <string name="usdMessage">доллар</string>
+    <string name="eurMessage">евро</string>
+    <string name="rubMessage">рубль</string>
+    <string name="sumMessage">Сумма:</string>
+    <string name="rateMessage">Курс:</string>
+    <string name="phoneMessage">Телефон:</string>
+    <string name="areaMessage">Район города:</string>
+    <string name="commentMessage">Комментарий:</string>
+
+    <string-array name="cities">
+        <item>Одесса</item>
+        <item>Киев</item>
+        <item>Харьков</item>
+        <item>Львов</item>
+    </string-array>
 </resources>
