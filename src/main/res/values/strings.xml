@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ExchangeMarket</string>
+    <string name="action_settings">Settings</string>
+    <string name="appNameHeader">Биржа обмена валют</string>
+    <string name="lookingForMessage">Просмотреть обьявления о покупке и продаже вылюты.</string>
+    <string name="btnShow">Просмотреть</string>
+    <string name="addMessage">Оставить заявку на продажу или покупку валюты.</string>
+    <string name="btnAdd">Добавить обьявление</string>
+</resources>
