@@ -2,21 +2,20 @@ package com.ekvilan.exchangemarket;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.ekvilan.exchangemarket.models.Advertisement;
+import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.utils.Validator;
+
+import org.json.JSONObject;
 
 
 public class AddAdvertisementActivity extends Activity {
@@ -27,17 +26,15 @@ public class AddAdvertisementActivity extends Activity {
     private EditText etPhone;
     private EditText etArea;
     private EditText etComment;
-    /*private RadioButton radioSale;
-    private RadioButton radioBuy;*/
     private RadioGroup radioGroupAction;
     private RadioGroup radioGroupCurrency;
-    private Dialog incorrectSum;
 
     private String cityName;
     private String actionUserChoice;
     private String currencyUserChoice;
 
     private Validator validator;
+    private JsonHelper jsonHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +42,7 @@ public class AddAdvertisementActivity extends Activity {
         setContentView(R.layout.add_advertisement);
 
         validator = new Validator();
+        jsonHelper = new JsonHelper();
 
         initView();
         setUpListCities();
@@ -60,8 +58,6 @@ public class AddAdvertisementActivity extends Activity {
         etPhone = (EditText)findViewById(R.id.etPhone);
         etArea = (EditText)findViewById(R.id.etArea);
         etComment = (EditText)findViewById(R.id.etComment);
-        /*radioSale = (RadioButton)findViewById(R.id.radio_sale);
-        radioBuy = (RadioButton)findViewById(R.id.radio_buy);*/
         radioGroupAction = (RadioGroup) findViewById(R.id.action_group);
         radioGroupCurrency = (RadioGroup) findViewById(R.id.currency_group);
     }
@@ -90,11 +86,9 @@ public class AddAdvertisementActivity extends Activity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*boolean b = validateFields();
-                Log.d("my", "b= " + b);*/
-                /*Log.d("my", "b= " + validateFields());*/
                 if(validateFields()) {
                     Advertisement advertisement = createAdvertisement();
+                    JSONObject json = jsonHelper.createJson(advertisement);
                 }
             }
         });
@@ -159,7 +153,7 @@ public class AddAdvertisementActivity extends Activity {
     }
 
     private Advertisement createAdvertisement() {
-        return new Advertisement(cityName, actionUserChoice, currencyUserChoice,
+        return new Advertisement(null, cityName, actionUserChoice, currencyUserChoice,
                 etSum.getText().toString(),etRate.getText().toString(),
                 etPhone.getText().toString(), etArea.getText().toString(),
                 etComment.getText().toString());

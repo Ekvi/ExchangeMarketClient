@@ -2,6 +2,7 @@ package com.ekvilan.exchangemarket.models;
 
 
 public class Advertisement {
+    private String userId;
     private String city;
     private String action;
     private String currency;
@@ -11,8 +12,9 @@ public class Advertisement {
     private String area;
     private String comment;
 
-    public Advertisement(String city, String action, String currency, String sum,
+    public Advertisement(String userId, String city, String action, String currency, String sum,
                          String rate, String phone, String area, String comment) {
+        this.userId = userId;
         this.city = city;
         this.action = action;
         this.currency = currency;
@@ -21,6 +23,14 @@ public class Advertisement {
         this.phone = phone;
         this.area = area;
         this.comment = comment;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getCity() {
