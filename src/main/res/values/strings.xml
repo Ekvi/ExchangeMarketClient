@@ -18,6 +18,11 @@
     <string name="phoneMessage">Телефон:</string>
     <string name="areaMessage">Район города:</string>
     <string name="commentMessage">Комментарий:</string>
+    <string name="alertTitle">Ошибка</string>
+    <string name="alertSumMessage">Поле \"сумма\" должно содержать целое число.</string>
+    <string name="alertRateMessage">Поле \"курс\" должно содержать число.</string>
+    <string name="alertEmptyFieldMessage">Поля \"сумма\", \"курс\" и \"телефон\" обязательны к заполнению.</string>
+    <string name="btnOk">OK</string>
 
     <string-array name="cities">
         <item>Одесса</item>

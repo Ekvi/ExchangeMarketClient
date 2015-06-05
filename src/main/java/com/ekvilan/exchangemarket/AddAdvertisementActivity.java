@@ -1,6 +1,9 @@
 package com.ekvilan.exchangemarket;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.ekvilan.exchangemarket.models.Advertisement;
+import com.ekvilan.exchangemarket.utils.Validator;
 
 
 public class AddAdvertisementActivity extends Activity {
@@ -23,19 +27,24 @@ public class AddAdvertisementActivity extends Activity {
     private EditText etPhone;
     private EditText etArea;
     private EditText etComment;
-    private RadioButton radioSale;
-    private RadioButton radioBuy;
+    /*private RadioButton radioSale;
+    private RadioButton radioBuy;*/
     private RadioGroup radioGroupAction;
     private RadioGroup radioGroupCurrency;
+    private Dialog incorrectSum;
 
     private String cityName;
     private String actionUserChoice;
     private String currencyUserChoice;
 
+    private Validator validator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_advertisement);
+
+        validator = new Validator();
 
         initView();
         setUpListCities();
@@ -51,15 +60,15 @@ public class AddAdvertisementActivity extends Activity {
         etPhone = (EditText)findViewById(R.id.etPhone);
         etArea = (EditText)findViewById(R.id.etArea);
         etComment = (EditText)findViewById(R.id.etComment);
-        radioSale = (RadioButton)findViewById(R.id.radio_sale);
-        radioBuy = (RadioButton)findViewById(R.id.radio_buy);
+        /*radioSale = (RadioButton)findViewById(R.id.radio_sale);
+        radioBuy = (RadioButton)findViewById(R.id.radio_buy);*/
         radioGroupAction = (RadioGroup) findViewById(R.id.action_group);
         radioGroupCurrency = (RadioGroup) findViewById(R.id.currency_group);
     }
 
     private void setUpListCities() {
         ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this,
-                                R.array.cities, android.R.layout.simple_spinner_item);
+                R.array.cities, android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -81,7 +90,12 @@ public class AddAdvertisementActivity extends Activity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Advertisement advertisement = createAdvertisement();
+                /*boolean b = validateFields();
+                Log.d("my", "b= " + b);*/
+                /*Log.d("my", "b= " + validateFields());*/
+                if(validateFields()) {
+                    Advertisement advertisement = createAdvertisement();
+                }
             }
         });
     }
@@ -117,6 +131,31 @@ public class AddAdvertisementActivity extends Activity {
                 }
             }
         });
+    }
+
+    private boolean validateFields() {
+        if (!validator.validateSum(etSum.getText().toString())) {
+            createDialog(getResources().getString(R.string.alertSumMessage));
+            return false;
+        } else if(!validator.validateRate(etRate.getText().toString())){
+            createDialog(getResources().getString(R.string.alertRateMessage));
+            return false;
+        } else if(validator.isEmptyField(etPhone.getText().toString())){
+            createDialog(getResources().getString(R.string.alertEmptyFieldMessage));
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private void createDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message);
+        builder.setTitle(getResources().getString(R.string.alertTitle));
+        builder.setPositiveButton(getResources().getString(R.string.btnOk), null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private Advertisement createAdvertisement() {
