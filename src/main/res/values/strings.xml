@@ -18,11 +18,15 @@
     <string name="phoneMessage">Телефон:</string>
     <string name="areaMessage">Район города:</string>
     <string name="commentMessage">Комментарий:</string>
-    <string name="alertTitle">Ошибка</string>
+    <string name="alertTitleEmptyFields">Неправильно заполнены поля</string>
     <string name="alertSumMessage">Поле \"сумма\" должно содержать целое число.</string>
     <string name="alertRateMessage">Поле \"курс\" должно содержать число.</string>
     <string name="alertEmptyFieldMessage">Поля \"сумма\", \"курс\" и \"телефон\" обязательны к заполнению.</string>
     <string name="btnOk">OK</string>
+    <string name="alertTitleInternetConnection">Ошибка соединения с интернетом</string>
+    <string name="alertInternetConnectionMessage">Проверьте подключение к интернету.</string>
+    <string name="sendMessage">Ваше обьявление опубликовано.</string>
+    <string name="responseOk">OK</string>
 
     <string-array name="cities">
         <item>Одесса</item>

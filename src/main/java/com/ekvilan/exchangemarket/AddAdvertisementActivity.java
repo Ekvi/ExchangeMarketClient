@@ -2,7 +2,11 @@ package com.ekvilan.exchangemarket;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,15 +14,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.ekvilan.exchangemarket.models.Advertisement;
 import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.utils.Validator;
 
-import org.json.JSONObject;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 
 public class AddAdvertisementActivity extends Activity {
+    private String LOG_TAG = "market";
+    private final String SERVER_URL = "http://hmkcode.appspot.com/jsonservlet";
+
     private Spinner city;
     private Button btnAdd;
     private EditText etSum;
@@ -87,8 +98,12 @@ public class AddAdvertisementActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(validateFields()) {
-                    Advertisement advertisement = createAdvertisement();
-                    JSONObject json = jsonHelper.createJson(advertisement);
+                    if(!isConnected()){
+                        createDialog(getResources().getString(R.string.alertTitleInternetConnection),
+                                getResources().getString(R.string.alertInternetConnectionMessage));
+                    } else {
+                        new HttpAsyncTask().execute(SERVER_URL);
+                    }
                 }
             }
         });
@@ -129,23 +144,26 @@ public class AddAdvertisementActivity extends Activity {
 
     private boolean validateFields() {
         if (!validator.validateSum(etSum.getText().toString())) {
-            createDialog(getResources().getString(R.string.alertSumMessage));
+            createDialog(getResources().getString(R.string.alertTitleEmptyFields),
+                    getResources().getString(R.string.alertSumMessage));
             return false;
         } else if(!validator.validateRate(etRate.getText().toString())){
-            createDialog(getResources().getString(R.string.alertRateMessage));
+            createDialog(getResources().getString(R.string.alertTitleEmptyFields),
+                    getResources().getString(R.string.alertRateMessage));
             return false;
         } else if(validator.isEmptyField(etPhone.getText().toString())){
-            createDialog(getResources().getString(R.string.alertEmptyFieldMessage));
+            createDialog(getResources().getString(R.string.alertTitleEmptyFields),
+                    getResources().getString(R.string.alertEmptyFieldMessage));
             return false;
         } else {
             return true;
         }
     }
 
-    private void createDialog(String message) {
+    private void createDialog(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message);
-        builder.setTitle(getResources().getString(R.string.alertTitle));
+        builder.setTitle(title);
         builder.setPositiveButton(getResources().getString(R.string.btnOk), null);
 
         AlertDialog dialog = builder.create();
@@ -157,5 +175,64 @@ public class AddAdvertisementActivity extends Activity {
                 etSum.getText().toString(),etRate.getText().toString(),
                 etPhone.getText().toString(), etArea.getText().toString(),
                 etComment.getText().toString());
+    }
+
+    private boolean isConnected(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(
+                Activity.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return POST(urls[0], createAdvertisement());
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if(result.equalsIgnoreCase(getResources().getString(R.string.responseOk))) {
+                Toast.makeText(getBaseContext(),
+                        getResources().getString(R.string.sendMessage), Toast.LENGTH_LONG).show();
+            } else {
+                Log.d(LOG_TAG, "add advertisement response - " + result);
+            }
+        }
+    }
+
+    private String POST(String urlString, Advertisement advertisement){
+        String result = "";
+        String json = jsonHelper.createJson(advertisement).toString();
+
+        DataOutputStream dataOutputStream;
+
+        try{
+            URL url = new URL(urlString);
+            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+
+            connection.setRequestProperty("Content-Type","application/json");
+            connection.setRequestMethod("POST");
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+            connection.connect();
+
+            dataOutputStream = new DataOutputStream(connection.getOutputStream ());
+
+            byte[] data = json.getBytes("UTF-8");
+
+            dataOutputStream.write(data);
+            dataOutputStream.flush ();
+            dataOutputStream.close ();
+
+            result = connection.getResponseMessage();
+        } catch (IOException e) {
+            Log.d(LOG_TAG, "Can't send json file!");
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }
