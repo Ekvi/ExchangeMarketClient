@@ -17,7 +17,7 @@ public class JsonHelperTest {
 
     @Test
     public void testReadJson() {
-        String json = "[{\"userId\":\"test@gmail.com\",\"city\":\"Odessa\", \"actionUserChoice\":\"покупка\", \"currencyUserChoice\":\"usd\", \"sum\":\"200\", \"rate\":\"20.50\", \"phone\":\"80976571223\", \"area\":\"Таирова\", \"comment\":\"можно частями\"}, {\"userId\":\"secondUser@gmail.com\",\"city\":\"Odessa\", \"actionUserChoice\":\"покупка\", \"currencyUserChoice\":\"eur\", \"sum\":\"500\", \"rate\":\"25.50\", \"phone\":\"80976571223\", \"area\":\"Центр\", \"comment\":\"могу подьехать\"}]";
+        String json = "[{\"userId\":\"test@gmail.com\",\"city\":\"Odessa\", \"action\":\"покупка\", \"currency\":\"usd\", \"sum\":\"200\", \"rate\":\"20.50\", \"phone\":\"80976571223\", \"area\":\"Таирова\", \"comment\":\"можно частями\", \"date\":\"7 июня 2015\"}, {\"userId\":\"secondUser@gmail.com\",\"city\":\"Odessa\", \"action\":\"покупка\", \"currency\":\"eur\", \"sum\":\"500\", \"rate\":\"25.50\", \"phone\":\"80976571223\", \"area\":\"Центр\", \"comment\":\"могу подьехать\", \"date\":\"7 июня 2015\"}]";
 
         List<Advertisement> advertisements = jsonHelper.readJson(json);
 
@@ -34,12 +34,12 @@ public class JsonHelperTest {
     @Test
     public void testCreateJson() throws JSONException {
         Advertisement advertisement = new Advertisement("userId", "Odessa", "sale", "usd",
-                "sum", "rate", "phone", "area", "comment");
+                "sum", "rate", "phone", "area", "comment", "date");
 
         JSONObject json = jsonHelper.createJson(advertisement);
 
-        assertEquals(9, json.length());
+        assertEquals(10, json.length());
         assertEquals("Odessa", json.getString("city"));
-        assertEquals("usd", json.getString("currencyUserChoice"));
+        assertEquals("usd", json.getString("currency"));
     }
 }

@@ -20,15 +20,19 @@ import com.ekvilan.exchangemarket.models.Advertisement;
 import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.utils.Validator;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 
 
 public class AddAdvertisementActivity extends Activity {
-    private String LOG_TAG = "market";
-    private final String SERVER_URL = "http://hmkcode.appspot.com/jsonservlet";
+    private String LOG_TAG = "myLog";
+    private final String SERVER_URL = "http://192.168.1.100:8080/advertisement/add";
 
     private Spinner city;
     private Button btnAdd;
@@ -171,10 +175,10 @@ public class AddAdvertisementActivity extends Activity {
     }
 
     private Advertisement createAdvertisement() {
-        return new Advertisement(null, cityName, actionUserChoice, currencyUserChoice,
+        return new Advertisement("test@gmail.com", cityName, actionUserChoice, currencyUserChoice,
                 etSum.getText().toString(),etRate.getText().toString(),
                 etPhone.getText().toString(), etArea.getText().toString(),
-                etComment.getText().toString());
+                etComment.getText().toString(), new Date().toString());
     }
 
     private boolean isConnected(){
@@ -206,7 +210,7 @@ public class AddAdvertisementActivity extends Activity {
     private String POST(String urlString, Advertisement advertisement){
         String result = "";
         String json = jsonHelper.createJson(advertisement).toString();
-
+        
         DataOutputStream dataOutputStream;
 
         try{

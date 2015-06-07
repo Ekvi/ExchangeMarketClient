@@ -13,17 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonHelper {
-    private String LOG_TAG = "market";
+    private String LOG_TAG = "myLog";
 
     private final String USER_ID = "userId";
     private final String CITY = "city";
-    private final String ACTION_USER_CHOICE = "actionUserChoice";
-    private final String CURRENCY_USER_CHOICE = "currencyUserChoice";
+    private final String ACTION_USER_CHOICE = "action";
+    private final String CURRENCY_USER_CHOICE = "currency";
     private final String SUM = "sum";
     private final String RATE = "rate";
     private final String PHONE = "phone";
     private final String AREA = "area";
     private final String COMMENT = "comment";
+    private final String DATE = "date";
 
     public List<Advertisement> readJson(String jsonFromServer) {
         List<Advertisement> ads = new ArrayList<>();
@@ -38,7 +39,7 @@ public class JsonHelper {
                         json.getString(CITY), json.getString(ACTION_USER_CHOICE),
                         json.getString(CURRENCY_USER_CHOICE), json.getString(SUM),
                         json.getString(RATE), json.getString(PHONE), json.getString(AREA),
-                        json.getString(COMMENT));
+                        json.getString(COMMENT), json.getString(DATE));
 
                 ads.add(advertisement);
             }
@@ -62,6 +63,7 @@ public class JsonHelper {
             json.put(PHONE, advertisement.getPhone());
             json.put(AREA, advertisement.getArea());
             json.put(COMMENT, advertisement.getComment());
+            json.put(DATE, advertisement.getDate());
         } catch (JSONException e) {
             Log.d(LOG_TAG, "Can't create json file!");
             e.printStackTrace();
