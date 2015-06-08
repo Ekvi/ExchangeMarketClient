@@ -9,7 +9,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -63,6 +62,7 @@ public class AddAdvertisementActivity extends Activity {
 
         initView();
         setUpListCities();
+        setUpDefaultValues();
         addButtonListeners();
         addRadioGroupListeners();
     }
@@ -97,6 +97,12 @@ public class AddAdvertisementActivity extends Activity {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
+    }
+
+    private void setUpDefaultValues() {
+        city.setSelection(0);
+        actionUserChoice = getResources().getString(R.string.saleMessage);
+        currencyUserChoice = getResources().getString(R.string.usdMessage);
     }
 
     private void addButtonListeners() {
