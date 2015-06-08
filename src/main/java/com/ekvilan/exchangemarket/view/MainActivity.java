@@ -1,10 +1,13 @@
-package com.ekvilan.exchangemarket;
+package com.ekvilan.exchangemarket.view;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.ekvilan.exchangemarket.R;
+import com.ekvilan.exchangemarket.view.AddAdvertisementActivity;
 
 
 public class MainActivity extends Activity {

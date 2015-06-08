@@ -1,5 +1,7 @@
-package com.ekvilan.exchangemarket;
+package com.ekvilan.exchangemarket.view;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.net.ConnectivityManager;
@@ -7,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,12 +19,11 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.ekvilan.exchangemarket.R;
 import com.ekvilan.exchangemarket.models.Advertisement;
 import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.utils.Validator;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -175,7 +177,7 @@ public class AddAdvertisementActivity extends Activity {
     }
 
     private Advertisement createAdvertisement() {
-        return new Advertisement("test@gmail.com", cityName, actionUserChoice, currencyUserChoice,
+        return new Advertisement(getUserId(), cityName, actionUserChoice, currencyUserChoice,
                 etSum.getText().toString(),etRate.getText().toString(),
                 etPhone.getText().toString(), etArea.getText().toString(),
                 etComment.getText().toString(), new Date().toString());
@@ -210,7 +212,7 @@ public class AddAdvertisementActivity extends Activity {
     private String POST(String urlString, Advertisement advertisement){
         String result = "";
         String json = jsonHelper.createJson(advertisement).toString();
-        
+
         DataOutputStream dataOutputStream;
 
         try{
@@ -238,5 +240,17 @@ public class AddAdvertisementActivity extends Activity {
         }
 
         return result;
+    }
+
+    private String getUserId() {
+        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        Account[] accounts = manager.getAccountsByType("com.google");
+
+        String userId = "";
+        if(accounts.length > 0) {
+            userId = accounts[0].name;
+        }
+
+        return userId;
     }
 }
