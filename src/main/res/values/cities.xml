@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cities_0">
+        <item>Бар</item>
+        <item>Бершадь</item>
+        <item>Чечельник</item>
+        <item>Гайсин</item>
+        <item>Гнивань</item>
+        <item>Хмельник</item>
+        <item>Ильинцы</item>
+        <item>Калиновка</item>
+        <item>Казатин</item>
+        <item>Крыжополь</item>
+        <item>Ладыжин</item>
+        <item>Липовец</item>
+        <item>Могилёв-Подольский</item>
+        <item>Немиров</item>
+        <item>Погребище</item>
+        <item>Шаргород</item>
+        <item>Стрижавка</item>
+        <item>Тульчин</item>
+        <item>Винница</item>
+        <item>Ямполь</item>
+        <item>Жмеринка</item>
+    </string-array>
+
+    <string-array name="cities_1">
+        <item>Беберестечко</item>
+        <item>Горохов</item>
+        <item>Иваничи</item>
+        <item>Камень-Каширский</item>
+        <item>Киверцы</item>
+        <item>Ковель</item>
+        <item>Луцк</item>
+        <item>Любешов</item>
+        <item>Любомль</item>
+        <item>Маневичи</item>
+        <item>Нововолынск</item>
+        <item>Ратно</item>
+        <item>Рожище</item>
+        <item>Шацк</item>
+        <item>Старая Выжевка</item>
+        <item>Цумань</item>
+        <item>Турийск</item>
+        <item>Устилуг</item>
+        <item>Владимир-Волынский</item>
+    </string-array>
+</resources>

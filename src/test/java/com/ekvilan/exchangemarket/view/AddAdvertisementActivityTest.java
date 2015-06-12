@@ -5,6 +5,8 @@ package com.ekvilan.exchangemarket.view;
 import android.test.ActivityUnitTestCase;
 import android.util.Log;
 
+import com.ekvilan.exchangemarket.view.activities.AddAdvertisementActivity;
+
 public class AddAdvertisementActivityTest extends ActivityUnitTestCase<AddAdvertisementActivity> {
     AddAdvertisementActivity activity = new AddAdvertisementActivity();
 

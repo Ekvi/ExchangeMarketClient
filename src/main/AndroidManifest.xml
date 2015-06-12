@@ -5,15 +5,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.AddAdvertisementActivity"
+            android:name=".view.activities.AddAdvertisementActivity"
             android:label="@string/title_activity_add_advertisement" >
         </activity>
-
+        <activity
+            android:name=".view.activities.ShowRegionsActivity"
+            android:label="@string/title_activity_show_regions" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.activities.AddAdvertisementActivity" />
+        </activity>
+        <activity
+            android:name=".view.activities.ShowCitiesActivity"
+            android:label="@string/title_activity_show_cities" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.activities.ShowRegionsActivity" />
+        </activity>
     </application>
 
 </manifest>

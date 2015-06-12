@@ -1,21 +1,22 @@
-package com.ekvilan.exchangemarket.view;
+package com.ekvilan.exchangemarket.view.activities;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ekvilan.exchangemarket.R;
@@ -31,11 +32,10 @@ import java.net.URL;
 import java.util.Date;
 
 
-public class AddAdvertisementActivity extends Activity {
+public class AddAdvertisementActivity extends ActionBarActivity {
     private String LOG_TAG = "myLog";
     private final String SERVER_URL = "http://192.168.1.100:8080/advertisement/add";
 
-    private Spinner city;
     private Button btnAdd;
     private EditText etSum;
     private EditText etRate;
@@ -44,8 +44,9 @@ public class AddAdvertisementActivity extends Activity {
     private EditText etComment;
     private RadioGroup radioGroupAction;
     private RadioGroup radioGroupCurrency;
+    private TextView tvCity;
+    //private Toolbar toolbar;
 
-    private String cityName;
     private String actionUserChoice;
     private String currencyUserChoice;
 
@@ -61,14 +62,16 @@ public class AddAdvertisementActivity extends Activity {
         jsonHelper = new JsonHelper();
 
         initView();
-        setUpListCities();
+        setUpToolBar();
         setUpDefaultValues();
         addButtonListeners();
         addRadioGroupListeners();
+        addTextViewListener();
+
+        //getLocation();
     }
 
     private void initView() {
-        city = (Spinner) findViewById(R.id.spinnerCity);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         etSum = (EditText)findViewById(R.id.etSum);
         etRate = (EditText)findViewById(R.id.etRate);
@@ -77,30 +80,19 @@ public class AddAdvertisementActivity extends Activity {
         etComment = (EditText)findViewById(R.id.etComment);
         radioGroupAction = (RadioGroup) findViewById(R.id.action_group);
         radioGroupCurrency = (RadioGroup) findViewById(R.id.currency_group);
+        tvCity = (TextView) findViewById(R.id.tvCity);
+        /*toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);*/
     }
 
-    private void setUpListCities() {
-        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this,
-                R.array.cities, android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        city.setAdapter(adapter);
-
-        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                cityName = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
-        });
-
+    private void setUpToolBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
     }
 
     private void setUpDefaultValues() {
-        city.setSelection(0);
+
         actionUserChoice = getResources().getString(R.string.saleMessage);
         currencyUserChoice = getResources().getString(R.string.usdMessage);
     }
@@ -154,6 +146,16 @@ public class AddAdvertisementActivity extends Activity {
         });
     }
 
+    private void addTextViewListener() {
+        tvCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddAdvertisementActivity.this, ShowRegionsActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+    }
+
     private boolean validateFields() {
         if (!validator.validateSum(etSum.getText().toString())) {
             createDialog(getResources().getString(R.string.alertTitleEmptyFields),
@@ -183,7 +185,7 @@ public class AddAdvertisementActivity extends Activity {
     }
 
     private Advertisement createAdvertisement() {
-        return new Advertisement(getUserId(), cityName, actionUserChoice, currencyUserChoice,
+        return new Advertisement(getUserId(), tvCity.getText().toString(), actionUserChoice, currencyUserChoice,
                 etSum.getText().toString(),etRate.getText().toString(),
                 etPhone.getText().toString(), etArea.getText().toString(),
                 etComment.getText().toString(), new Date().toString());
@@ -259,4 +261,43 @@ public class AddAdvertisementActivity extends Activity {
 
         return userId;
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (intent == null) {return;}
+        tvCity.setText(intent.getStringExtra(getResources().getString(R.string.city_name)));
+    }
+
+    /*private void getLocation() {
+        LocationManager locationManager = (LocationManager)this.getSystemService(LOCATION_SERVICE);
+        Log.d(LOG_TAG, "manager " + locationManager);
+        Location location = null;
+
+        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        }
+
+        if(location != null) {
+            double latitude = location.getLatitude();
+            double longitude = location.getLongitude();
+            //String result = "Latitude: " + location.getLatitude() + " Longitude: " + location.getLongitude();
+
+            String result = "";
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addressList = null;
+            try {
+                addressList = geocoder.getFromLocation(latitude, longitude, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (addressList != null && addressList.size() > 0) {
+                Address address = addressList.get(0);
+                result = address.getLocality();
+                Log.d(LOG_TAG, "result = " + result);
+                cityName = address.getLocality();
+                tvCity.setText(cityName);
+                Toast.makeText(this, cityName, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }*/
 }

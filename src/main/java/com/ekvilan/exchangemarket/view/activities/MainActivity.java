@@ -1,4 +1,4 @@
-package com.ekvilan.exchangemarket.view;
+package com.ekvilan.exchangemarket.view.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.ekvilan.exchangemarket.R;
-import com.ekvilan.exchangemarket.view.AddAdvertisementActivity;
+import com.ekvilan.exchangemarket.view.activities.AddAdvertisementActivity;
 
 
 public class MainActivity extends Activity {
