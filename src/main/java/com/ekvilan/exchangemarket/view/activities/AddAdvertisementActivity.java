@@ -45,7 +45,6 @@ public class AddAdvertisementActivity extends ActionBarActivity {
     private RadioGroup radioGroupAction;
     private RadioGroup radioGroupCurrency;
     private TextView tvCity;
-    //private Toolbar toolbar;
 
     private String actionUserChoice;
     private String currencyUserChoice;
@@ -81,8 +80,6 @@ public class AddAdvertisementActivity extends ActionBarActivity {
         radioGroupAction = (RadioGroup) findViewById(R.id.action_group);
         radioGroupCurrency = (RadioGroup) findViewById(R.id.currency_group);
         tvCity = (TextView) findViewById(R.id.tvCity);
-        /*toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);*/
     }
 
     private void setUpToolBar() {
