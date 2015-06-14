@@ -26,18 +26,11 @@
             android:label="@string/title_activity_add_advertisement" >
         </activity>
         <activity
-            android:name=".view.activities.ShowRegionsActivity"
-            android:label="@string/title_activity_show_regions" >
+            android:name=".view.activities.ShowEntitiesActivity"
+            android:label="@string/title_activity_show_entities" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.activities.AddAdvertisementActivity" />
-        </activity>
-        <activity
-            android:name=".view.activities.ShowCitiesActivity"
-            android:label="@string/title_activity_show_cities" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.activities.ShowRegionsActivity" />
         </activity>
     </application>
 

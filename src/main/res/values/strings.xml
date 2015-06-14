@@ -6,10 +6,8 @@
     <string name="btnShow">Просмотреть</string>
     <string name="addMessage">Оставить заявку на продажу или покупку валюты.</string>
     <string name="btnAdd">Добавить обьявление</string>
-    <string name="chooseCityMessage">Выберите город:</string>
     <string name="title_activity_add_advertisement">AddAdvertisementActivity</string>
-    <string name="title_activity_show_cities">ShowCitiesActivity</string>
-    <string name="title_activity_show_regions">ShowRegionsActivity</string>
+    <string name="title_activity_show_entities">ShowEntitiesActivity</string>
     <string name="saleMessage">продать</string>
     <string name="buyMessage">купить</string>
     <string name="usdMessage">доллар</string>
@@ -23,6 +21,7 @@
     <string name="alertTitleEmptyFields">Неправильно заполнены поля</string>
     <string name="alertSumMessage">Поле \"сумма\" должно содержать целое число.</string>
     <string name="alertRateMessage">Поле \"курс\" должно содержать число.</string>
+    <string name="alertCityMessage">Выберите город.</string>
     <string name="alertEmptyFieldMessage">Поля \"сумма\", \"курс\" и \"телефон\" обязательны к заполнению.</string>
     <string name="btnOk">OK</string>
     <string name="alertTitleInternetConnection">Ошибка соединения с интернетом</string>
@@ -35,4 +34,5 @@
     <string name="region_name">region_name</string>
     <string name="region_id">region_id</string>
     <string name="city_name">city_name</string>
+    <string name="tvCityContent">tvCityContent</string>
 </resources>

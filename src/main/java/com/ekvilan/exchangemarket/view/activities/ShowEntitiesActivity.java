@@ -1,8 +1,6 @@
 package com.ekvilan.exchangemarket.view.activities;
 
-
 import android.content.Intent;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,27 +12,36 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ekvilan.exchangemarket.R;
-
+import com.ekvilan.exchangemarket.view.adapters.CityAdapter;
 import com.ekvilan.exchangemarket.view.adapters.RegionAdapter;
 import com.ekvilan.exchangemarket.view.listeners.RecyclerItemClickListener;
 
+public class ShowEntitiesActivity extends ActionBarActivity {
+    public static final String CHOICE_CITY_MESSAGE = "Выберите город";
 
-
-public class ShowRegionsActivity extends ActionBarActivity {
     private RecyclerView recyclerView;
+    private TextView tvCity;
+
+    private String cityTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_regions);
+        setContentView(R.layout.activity_show_entities);
+
+        Intent intent = getIntent();
+        cityTextView = intent.getStringExtra(getResources().getString(R.string.tvCityContent));
 
         initView();
         initToolBar();
+        addListener();
+
         fillActivityContent();
     }
 
     private void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        tvCity = (TextView) findViewById(R.id.tvCity);
     }
 
     private void initToolBar() {
@@ -46,33 +53,39 @@ public class ShowRegionsActivity extends ActionBarActivity {
     }
 
     private void fillActivityContent() {
-        String[] regions = getResources().getStringArray(R.array.ukrainian_regions);
+        String[] values = getResources().getStringArray(R.array.ukrainian_regions);
 
-        recyclerView.setAdapter(new RegionAdapter(this, regions));
+        recyclerView.setAdapter(new RegionAdapter(this, values));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 
+    private void fillActivityContent(String region, int position) {
+        int resourceId = getResources().getIdentifier("cities_" + position, "array",
+                this.getPackageName());
+        String[] cities = getResources().getStringArray(resourceId);
+
+        recyclerView.setAdapter(new CityAdapter(this, cities, region));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void addListener() {
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
+                        if(cityTextView.equalsIgnoreCase(CHOICE_CITY_MESSAGE)) {
+                            TextView region = (TextView)view.findViewById(R.id.region_activity_region);
 
-                        TextView region = (TextView)view.findViewById(R.id.region_activity_region);
-                        startShowCitiesActivity(region.getText().toString(), position);
+                            cityTextView = region.getText().toString();
+                            tvCity.setText(cityTextView);
+
+                            fillActivityContent(region.getText().toString(), position);
+                        } else {
+                            TextView city = (TextView)view.findViewById(R.id.city_activity_city);
+                            saveCityName(city.getText().toString());
+                        }
                     }
                 })
         );
-    }
-
-    private void startShowCitiesActivity(String regionName, int position) {
-        Intent intent = new Intent(this, ShowCitiesActivity.class);
-        intent.putExtra(getResources().getString(R.string.region_name), regionName);
-        intent.putExtra(getResources().getString(R.string.region_id), position);
-        startActivityForResult(intent, 1);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (intent == null) {return;}
-        saveCityName(intent.getStringExtra(getResources().getString(R.string.city_name)));
     }
 
     private void saveCityName(String cityName) {
@@ -84,7 +97,7 @@ public class ShowRegionsActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_show_cities, menu);
+        getMenuInflater().inflate(R.menu.menu_show_entities, menu);
         return true;
     }
 
@@ -92,8 +105,8 @@ public class ShowRegionsActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == android.R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
+        if (id == R.id.action_settings) {
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

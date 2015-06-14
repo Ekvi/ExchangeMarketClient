@@ -66,8 +66,6 @@ public class AddAdvertisementActivity extends ActionBarActivity {
         addButtonListeners();
         addRadioGroupListeners();
         addTextViewListener();
-
-        //getLocation();
     }
 
     private void initView() {
@@ -147,7 +145,9 @@ public class AddAdvertisementActivity extends ActionBarActivity {
         tvCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddAdvertisementActivity.this, ShowRegionsActivity.class);
+                Intent intent = new Intent(AddAdvertisementActivity.this, ShowEntitiesActivity.class);
+                intent.putExtra(getResources().getString(R.string.tvCityContent),
+                        getResources().getString(R.string.cityChoice));
                 startActivityForResult(intent, 1);
             }
         });
@@ -166,6 +166,10 @@ public class AddAdvertisementActivity extends ActionBarActivity {
             createDialog(getResources().getString(R.string.alertTitleEmptyFields),
                     getResources().getString(R.string.alertEmptyFieldMessage));
             return false;
+        } else if(validator.isEmptyCity(tvCity.getText().toString())){
+            createDialog(getResources().getString(R.string.alertTitleEmptyFields),
+                    getResources().getString(R.string.alertCityMessage));
+            return false;
         } else {
             return true;
         }
@@ -182,8 +186,8 @@ public class AddAdvertisementActivity extends ActionBarActivity {
     }
 
     private Advertisement createAdvertisement() {
-        return new Advertisement(getUserId(), tvCity.getText().toString(), actionUserChoice, currencyUserChoice,
-                etSum.getText().toString(),etRate.getText().toString(),
+        return new Advertisement(getUserId(), tvCity.getText().toString(), actionUserChoice,
+                currencyUserChoice, etSum.getText().toString(),etRate.getText().toString(),
                 etPhone.getText().toString(), etArea.getText().toString(),
                 etComment.getText().toString(), new Date().toString());
     }
@@ -264,37 +268,4 @@ public class AddAdvertisementActivity extends ActionBarActivity {
         if (intent == null) {return;}
         tvCity.setText(intent.getStringExtra(getResources().getString(R.string.city_name)));
     }
-
-    /*private void getLocation() {
-        LocationManager locationManager = (LocationManager)this.getSystemService(LOCATION_SERVICE);
-        Log.d(LOG_TAG, "manager " + locationManager);
-        Location location = null;
-
-        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        }
-
-        if(location != null) {
-            double latitude = location.getLatitude();
-            double longitude = location.getLongitude();
-            //String result = "Latitude: " + location.getLatitude() + " Longitude: " + location.getLongitude();
-
-            String result = "";
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-            List<Address> addressList = null;
-            try {
-                addressList = geocoder.getFromLocation(latitude, longitude, 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (addressList != null && addressList.size() > 0) {
-                Address address = addressList.get(0);
-                result = address.getLocality();
-                Log.d(LOG_TAG, "result = " + result);
-                cityName = address.getLocality();
-                tvCity.setText(cityName);
-                Toast.makeText(this, cityName, Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
 }

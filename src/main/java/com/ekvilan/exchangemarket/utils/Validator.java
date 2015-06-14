@@ -2,6 +2,8 @@ package com.ekvilan.exchangemarket.utils;
 
 
 
+import com.ekvilan.exchangemarket.view.activities.ShowEntitiesActivity;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,5 +50,9 @@ public class Validator {
 
     public boolean isEmptyField(String content) {
         return isEmpty(content);
+    }
+
+    public boolean isEmptyCity(String cityName) {
+        return cityName.equalsIgnoreCase(ShowEntitiesActivity.CHOICE_CITY_MESSAGE);
     }
 }
