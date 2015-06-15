@@ -32,6 +32,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.activities.AddAdvertisementActivity" />
         </activity>
+        <activity
+            android:name=".view.activities.ShowAdsActivity"
+            android:label="@string/title_activity_show_ads_activity" >
+        </activity>
     </application>
 
 </manifest>

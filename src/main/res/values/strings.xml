@@ -8,6 +8,7 @@
     <string name="btnAdd">Добавить обьявление</string>
     <string name="title_activity_add_advertisement">AddAdvertisementActivity</string>
     <string name="title_activity_show_entities">ShowEntitiesActivity</string>
+    <string name="title_activity_show_ads_activity">ShowAdsActivity</string>
     <string name="saleMessage">продать</string>
     <string name="buyMessage">купить</string>
     <string name="usdMessage">доллар</string>
@@ -35,4 +36,5 @@
     <string name="region_id">region_id</string>
     <string name="city_name">city_name</string>
     <string name="tvCityContent">tvCityContent</string>
+    <string name="searchSettings">Фильтр поиска</string>
 </resources>

@@ -71,4 +71,19 @@ public class JsonHelper {
 
         return json;
     }
+
+    public JSONObject createJson(String city, List<String> actions, List<String> currencies)  {
+        JSONObject json = new JSONObject();
+
+        try {
+            json.put(CITY, city);
+            json.put(ACTION_USER_CHOICE, new JSONArray(actions));
+            json.put(CURRENCY_USER_CHOICE, new JSONArray(currencies));
+        } catch (JSONException e) {
+            Log.d(LOG_TAG, "Can't create json file!");
+            e.printStackTrace();
+        }
+
+        return json;
+    }
 }

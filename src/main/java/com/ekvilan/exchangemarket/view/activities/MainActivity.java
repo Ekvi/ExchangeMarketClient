@@ -30,12 +30,24 @@ public class MainActivity extends Activity {
     }
 
     private void addButtonListeners() {
+        btnShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callShowAdvertisementActivity();
+            }
+        });
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callAddAdvertisementActivity();
             }
         });
+    }
+
+    private void callShowAdvertisementActivity() {
+        Intent intent = new Intent(this, ShowAdsActivity.class);
+        startActivityForResult(intent, 1);
     }
 
     private void callAddAdvertisementActivity() {
