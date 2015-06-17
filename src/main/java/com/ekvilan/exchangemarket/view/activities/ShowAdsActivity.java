@@ -45,8 +45,8 @@ public class ShowAdsActivity extends ActionBarActivity {
     private CheckBox actionBuy, actionSale;
     private CheckBox usd, eur, rub;
     private RecyclerView recyclerView;
-    private View header;
 
+    private JsonHelper jsonHelper;
     private String json;
     private String jsonFromServer;
 
@@ -55,8 +55,9 @@ public class ShowAdsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_ads);
 
-        initView();
+        jsonHelper = new JsonHelper();
 
+        initView();
         addListeners();
     }
 
@@ -117,7 +118,6 @@ public class ShowAdsActivity extends ActionBarActivity {
                     createDialog(getResources().getString(R.string.alertTitleEmptyFields),
                             getResources().getString(R.string.alertCityMessage));
                 } else {
-                    JsonHelper jsonHelper = new JsonHelper();
                     json = jsonHelper.createJson(city, actions, currencies).toString();
                     sendRequestToServer();
                 }
@@ -261,7 +261,6 @@ public class ShowAdsActivity extends ActionBarActivity {
     }
 
     private void fillActivityContent(String json) {
-        JsonHelper jsonHelper = new JsonHelper();
         List<Advertisement> ads = jsonHelper.readJson(json);
 
         recyclerView.setAdapter(new AdvertisementAdapter(this, ads));
