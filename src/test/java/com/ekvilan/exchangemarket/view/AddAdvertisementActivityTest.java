@@ -20,7 +20,5 @@ public class AddAdvertisementActivityTest extends ActivityUnitTestCase<AddAdvert
         activity = getActivity();
     }
 
-    public void testGetUserId() {
-        Log.d("my", activity.getUserId());
-    }
+
 }

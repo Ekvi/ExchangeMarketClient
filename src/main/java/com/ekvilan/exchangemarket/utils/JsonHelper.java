@@ -25,6 +25,8 @@ public class JsonHelper {
     private final String AREA = "area";
     private final String COMMENT = "comment";
     private final String DATE = "date";
+    private final String ACTIONS_LIST= "actions";
+    private final String CURRENCIES_LIST= "currencies";
 
     public List<Advertisement> readJson(String jsonFromServer) {
         List<Advertisement> ads = new ArrayList<>();
@@ -77,8 +79,8 @@ public class JsonHelper {
 
         try {
             json.put(CITY, city);
-            json.put(ACTION_USER_CHOICE, new JSONArray(actions));
-            json.put(CURRENCY_USER_CHOICE, new JSONArray(currencies));
+            json.put(ACTIONS_LIST, new JSONArray(actions));
+            json.put(CURRENCIES_LIST, new JSONArray(currencies));
         } catch (JSONException e) {
             Log.d(LOG_TAG, "Can't create json file!");
             e.printStackTrace();

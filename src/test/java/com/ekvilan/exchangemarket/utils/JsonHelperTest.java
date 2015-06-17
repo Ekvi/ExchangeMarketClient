@@ -1,6 +1,7 @@
 package com.ekvilan.exchangemarket.utils;
 
 
+
 import com.ekvilan.exchangemarket.models.Advertisement;
 
 import org.json.JSONException;
