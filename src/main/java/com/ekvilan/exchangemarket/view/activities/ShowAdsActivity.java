@@ -45,6 +45,7 @@ public class ShowAdsActivity extends ActionBarActivity {
     private CheckBox actionBuy, actionSale;
     private CheckBox usd, eur, rub;
     private RecyclerView recyclerView;
+    private View header;
 
     private String json;
     private String jsonFromServer;
