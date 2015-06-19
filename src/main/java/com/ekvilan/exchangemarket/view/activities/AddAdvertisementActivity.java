@@ -9,7 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +32,7 @@ import java.net.URL;
 import java.util.Date;
 
 
-public class AddAdvertisementActivity extends ActionBarActivity {
+public class AddAdvertisementActivity extends AppCompatActivity {
     private String LOG_TAG = "myLog";
     private final String SERVER_URL = "http://192.168.1.100:8080/advertisement/add";
 
@@ -87,7 +87,6 @@ public class AddAdvertisementActivity extends ActionBarActivity {
     }
 
     private void setUpDefaultValues() {
-
         actionUserChoice = getResources().getString(R.string.saleMessage);
         currencyUserChoice = getResources().getString(R.string.usdMessage);
     }

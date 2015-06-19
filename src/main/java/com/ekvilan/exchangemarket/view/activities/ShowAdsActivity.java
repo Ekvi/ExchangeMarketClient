@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -36,7 +37,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowAdsActivity extends ActionBarActivity {
+public class ShowAdsActivity extends AppCompatActivity {
     private String LOG_TAG = "myLog";
     private final String SERVER_URL = "http://192.168.1.100:8080/advertisement/get";
 
@@ -45,6 +46,7 @@ public class ShowAdsActivity extends ActionBarActivity {
     private CheckBox actionBuy, actionSale;
     private CheckBox usd, eur, rub;
     private RecyclerView recyclerView;
+    private ImageView imageAddAds;
 
     private JsonHelper jsonHelper;
     private String json;
@@ -65,6 +67,7 @@ public class ShowAdsActivity extends ActionBarActivity {
         tvCity = (TextView) findViewById(R.id.tvCity);
         searchSettings = (ImageView) findViewById(R.id.searchSettings);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        imageAddAds = (ImageView) findViewById(R.id.addAds);
     }
 
     private void addListeners() {
@@ -82,6 +85,13 @@ public class ShowAdsActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 showSettingsWindow();
+            }
+        });
+
+        imageAddAds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callAddAdvertisementActivity();
             }
         });
     }
@@ -265,5 +275,10 @@ public class ShowAdsActivity extends ActionBarActivity {
 
         recyclerView.setAdapter(new AdvertisementAdapter(this, ads));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void callAddAdvertisementActivity() {
+        Intent intent = new Intent(this, AddAdvertisementActivity.class);
+        startActivityForResult(intent, 1);
     }
 }

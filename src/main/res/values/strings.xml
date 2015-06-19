@@ -37,4 +37,6 @@
     <string name="city_name">city_name</string>
     <string name="tvCityContent">tvCityContent</string>
     <string name="searchSettings">Фильтр поиска</string>
+    <string name="title_activity_show_my_ads">ShowMyAdsActivity</string>
+    <string name="myAdsTitle">Ваши обьявления</string>
 </resources>

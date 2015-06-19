@@ -1,11 +1,15 @@
 package com.ekvilan.exchangemarket.view.activities;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,7 +18,7 @@ import com.ekvilan.exchangemarket.view.adapters.CityAdapter;
 import com.ekvilan.exchangemarket.view.adapters.RegionAdapter;
 import com.ekvilan.exchangemarket.view.listeners.RecyclerItemClickListener;
 
-public class ShowEntitiesActivity extends ActionBarActivity {
+public class ShowEntitiesActivity extends AppCompatActivity {
     public static final String CHOICE_CITY_MESSAGE = "Выберите город";
 
     private RecyclerView recyclerView;
