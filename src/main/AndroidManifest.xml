@@ -40,6 +40,10 @@
             android:name=".view.activities.ShowMyAdsActivity"
             android:label="@string/title_activity_show_my_ads" >
         </activity>
+        <activity
+            android:name=".view.activities.AdvertisementActivity"
+            android:label="@string/title_activity_advertisement" >
+        </activity>
     </application>
 
 </manifest>

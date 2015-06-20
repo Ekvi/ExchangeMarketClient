@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +25,7 @@ import com.ekvilan.exchangemarket.models.Advertisement;
 import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.utils.Validator;
 import com.ekvilan.exchangemarket.view.adapters.AdvertisementAdapter;
+import com.ekvilan.exchangemarket.view.listeners.RecyclerItemClickListener;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -51,6 +51,7 @@ public class ShowAdsActivity extends AppCompatActivity {
     private JsonHelper jsonHelper;
     private String json;
     private String jsonFromServer;
+    List<Advertisement> ads;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,14 @@ public class ShowAdsActivity extends AppCompatActivity {
                 callAddAdvertisementActivity();
             }
         });
+
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        callAdvertisementActivity(position);
+                    }
+                })
+        );
     }
 
     @Override
@@ -271,7 +280,7 @@ public class ShowAdsActivity extends AppCompatActivity {
     }
 
     private void fillActivityContent(String json) {
-        List<Advertisement> ads = jsonHelper.readJson(json);
+        ads = jsonHelper.readJson(json);
 
         recyclerView.setAdapter(new AdvertisementAdapter(this, ads));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -279,6 +288,12 @@ public class ShowAdsActivity extends AppCompatActivity {
 
     private void callAddAdvertisementActivity() {
         Intent intent = new Intent(this, AddAdvertisementActivity.class);
+        startActivityForResult(intent, 1);
+    }
+
+    private void callAdvertisementActivity(int position) {
+        Intent intent = new Intent(this, AdvertisementActivity.class);
+        intent.putExtra("advertisement", ads.get(position));
         startActivityForResult(intent, 1);
     }
 }

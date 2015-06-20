@@ -1,8 +1,10 @@
 package com.ekvilan.exchangemarket.models;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Advertisement {
+public class Advertisement implements Parcelable {
     private String userId;
     private String city;
     private String action;
@@ -15,6 +17,10 @@ public class Advertisement {
     private String date;
 
     public Advertisement() {}
+
+    public Advertisement(Parcel parcel) {
+        readFromParcel(parcel);
+    }
 
     public Advertisement(String userId, String city, String action, String currency, String sum,
                          String rate, String phone, String area, String comment, String date) {
@@ -108,5 +114,47 @@ public class Advertisement {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(userId);
+        dest.writeString(city);
+        dest.writeString(action);
+        dest.writeString(currency);
+        dest.writeString(sum);
+        dest.writeString(rate);
+        dest.writeString(phone);
+        dest.writeString(area);
+        dest.writeString(comment);
+        dest.writeString(date);
+    }
+
+    public static final Parcelable.Creator<Advertisement> CREATOR = new Parcelable.Creator<Advertisement>() {
+        public Advertisement createFromParcel(Parcel parcel) {
+            return new Advertisement(parcel);
+        }
+
+        public Advertisement[] newArray(int size) {
+            return new Advertisement[size];
+        }
+    };
+
+    private void readFromParcel(Parcel parcel) {
+        userId = parcel.readString();
+        city = parcel.readString();
+        action = parcel.readString();
+        currency = parcel.readString();
+        sum = parcel.readString();
+        rate = parcel.readString();
+        phone = parcel.readString();
+        area = parcel.readString();
+        comment = parcel.readString();
+        date = parcel.readString();
     }
 }
