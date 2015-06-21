@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/main_background"
     tools:context=".MainActivity">
 
     <include
@@ -13,44 +14,59 @@
         android:id="@+id/show_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/main_tool_bar"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginTop="10dp"
-        android:background="@color/workingColor" >
+        android:layout_below="@+id/main_tool_bar"
+        android:background="@drawable/main_component" >
         <TextView
             android:id="@+id/tvShowMessage"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="@string/lookingForMessage" />
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:text="@string/lookingForMessage"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"/>
         <Button
             android:id="@+id/btnShow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button"
             android:text="@string/btnShow"
             android:layout_below="@+id/tvShowMessage"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp" />
     </RelativeLayout>
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/add_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/show_panel"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginTop="20dp"
-        android:background="@color/workingColor" >
+        android:layout_below="@+id/show_panel"
+        android:background="@drawable/main_component" >
         <TextView
             android:id="@+id/tvAddMessage"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="@string/addMessage" />
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:text="@string/addMessage"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
         <Button
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button"
             android:text="@string/btnAdd"
             android:layout_below="@+id/tvAddMessage"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp" />
     </RelativeLayout>
 
 </RelativeLayout>

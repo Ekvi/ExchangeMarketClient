@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="workingColor">#CADFC2</color>
+    <!--<color name="workingColor">#CADFC2</color>-->
+    <color name="workingColor">#009688</color>
+    <color name="toolbarStart">#B2DFDB</color>
+    <color name="toolbarEnd">#004D40</color>
+    <color name="toolbarCenter">#26A69A</color>
+    <color name="teal50">#E0F2F1</color>
+    <color name="teal300">#4DB6AC</color>
+    <color name="teal200">#80CBC4</color>
+    <color name="buttonBackground">#E0E0E0</color>
+    <color name="buttonBorder">#BDBDBD</color>
+    <!--<color name="mainBackgroundStart">#F0F4C3</color>
+    <color name="mainBackgroundEnd">#D7CCC8</color>-->
+    <!--<color name="mainBackgroundStart">#C8E6C9</color>
+    <color name="mainBackgroundEnd">#E6EE9C</color>-->
+    <color name="mainBackgroundStart">#C8E6C9</color>
+    <color name="mainBackgroundEnd">#D7CCC8</color>
+
 </resources>
