@@ -2,15 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@android:color/background_light" >
+    android:background="@drawable/main_background" >
 
     <TextView
         android:id="@+id/tvSettingsMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="Параметры поиска"
-        android:layout_centerHorizontal="true"/>
+        android:textColor="@color/black"
+        android:text="@string/searchSettingsTitle"
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,7 +19,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/tvSettingsMessage">
+        android:layout_below="@+id/tvSettingsMessage"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp" >
+
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
@@ -35,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
+
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
@@ -62,7 +68,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/saleBuyLayout"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp" >
+
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
@@ -79,6 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
+
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
@@ -97,6 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
@@ -115,6 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+
     </LinearLayout>
 
     <Button
@@ -123,7 +135,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/currencyLayout"
         android:layout_centerHorizontal="true"
-        android:text="OK"/>
+        android:background="@drawable/button"
+        android:text="@string/btnOk"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
 
 </RelativeLayout>
 

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.ekvilan.exchangemarket.R;
 import com.ekvilan.exchangemarket.models.Advertisement;
+import com.ekvilan.exchangemarket.utils.DateUtils;
 import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.utils.Validator;
 
@@ -29,7 +30,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 
 
 public class AddAdvertisementActivity extends AppCompatActivity {
@@ -188,7 +188,12 @@ public class AddAdvertisementActivity extends AppCompatActivity {
         return new Advertisement(getUserId(), tvCity.getText().toString(), actionUserChoice,
                 currencyUserChoice, etSum.getText().toString(),etRate.getText().toString(),
                 etPhone.getText().toString(), etArea.getText().toString(),
-                etComment.getText().toString(), new Date().toString());
+                etComment.getText().toString(), getDate());
+    }
+
+    private String getDate() {
+        DateUtils dateUtils = new DateUtils();
+        return dateUtils.createDate();
     }
 
     private boolean isConnected(){

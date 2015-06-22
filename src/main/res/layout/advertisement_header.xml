@@ -1,46 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@drawable/ads_row"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:background="@drawable/header" >
 
     <TextView
         android:id="@+id/tvDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/header_element_border"
         android:textSize="20sp"
+        android:text="@string/adsHeaderDate"
         android:paddingLeft="5dp" />
     <TextView
         android:id="@+id/tvAction"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/header_element_border"
         android:textSize="20sp"
+        android:text="@string/adsHeaderAction"
         android:paddingLeft="5dp" />
     <TextView
         android:id="@+id/tvCurrency"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/header_element_border"
         android:textSize="20sp"
+        android:text="@string/adsHeaderCurrency"
         android:paddingLeft="5dp" />
     <TextView
         android:id="@+id/tvSum"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/header_element_border"
         android:textSize="20sp"
+        android:text="@string/adsHeaderSum"
         android:paddingLeft="5dp" />
     <TextView
         android:id="@+id/tvRate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/header_element_border"
         android:textSize="20sp"
+        android:text="@string/adsHeaderRate"
         android:paddingLeft="5dp" />
 
 </LinearLayout>

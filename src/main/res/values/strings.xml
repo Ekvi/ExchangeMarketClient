@@ -33,7 +33,7 @@
     <string name="responseOk">OK</string>
     <string name="cityChoice">Выберите город</string>
     <string name="showCity">&gt;</string>
-    <string name="region">регион</string>
+    <string name="region">область</string>
     <string name="region_name">region_name</string>
     <string name="region_id">region_id</string>
     <string name="city_name">city_name</string>
@@ -44,4 +44,10 @@
     <string name="adsBuyMessage">Куплю</string>
     <string name="adsUsdMessage">долларов</string>
     <string name="adsRubMessage">рублей</string>
+    <string name="adsHeaderDate">Время</string>
+    <string name="adsHeaderAction"></string>
+    <string name="adsHeaderCurrency">Валюта</string>
+    <string name="adsHeaderSum">Сумма</string>
+    <string name="adsHeaderRate">Курс</string>
+    <string name="searchSettingsTitle">Параметры поиска</string>
 </resources>

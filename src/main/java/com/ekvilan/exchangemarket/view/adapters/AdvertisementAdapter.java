@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.ekvilan.exchangemarket.R;
 import com.ekvilan.exchangemarket.models.Advertisement;
+import com.ekvilan.exchangemarket.utils.DateUtils;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class AdvertisementAdapter extends
 
     @Override
     public void onBindViewHolder(AdvertisementViewHolder adsViewHolder, int position) {
-        adsViewHolder.date.setText(ads.get(position).getDate());
+        adsViewHolder.date.setText(formatDate(ads.get(position).getDate()));
         adsViewHolder.action.setText(ads.get(position).getAction());
         adsViewHolder.currency.setText(ads.get(position).getCurrency());
         adsViewHolder.sum.setText(ads.get(position).getSum());
@@ -59,5 +60,10 @@ public class AdvertisementAdapter extends
             sum = (TextView) itemView.findViewById(R.id.tvSum);
             rate = (TextView) itemView.findViewById(R.id.tvRate);
         }
+    }
+
+    private String formatDate(String date) {
+        DateUtils dateUtils = new DateUtils();
+        return dateUtils.formatDate(date, dateUtils.createDate());
     }
 }
