@@ -1,10 +1,8 @@
 package com.ekvilan.exchangemarket.view.activities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,18 +20,13 @@ import android.widget.TextView;
 
 import com.ekvilan.exchangemarket.R;
 import com.ekvilan.exchangemarket.models.Advertisement;
+import com.ekvilan.exchangemarket.utils.ConnectionProvider;
 import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.utils.Validator;
+import com.ekvilan.exchangemarket.view.DialogProvider;
 import com.ekvilan.exchangemarket.view.adapters.AdvertisementAdapter;
 import com.ekvilan.exchangemarket.view.listeners.RecyclerItemClickListener;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,9 +42,11 @@ public class ShowAdsActivity extends AppCompatActivity {
     private ImageView imageAddAds;
 
     private JsonHelper jsonHelper;
+    private ConnectionProvider connectionProvider;
+    private DialogProvider dialogProvider;
+
     private String json;
-    private String jsonFromServer;
-    List<Advertisement> ads;
+    private List<Advertisement> ads;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +54,8 @@ public class ShowAdsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_ads);
 
         jsonHelper = new JsonHelper();
+        connectionProvider = new ConnectionProvider();
+        dialogProvider = new DialogProvider();
 
         initView();
         addListeners();
@@ -182,16 +179,6 @@ public class ShowAdsActivity extends AppCompatActivity {
         return currencies;
     }
 
-    private void createDialog(String title, String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message);
-        builder.setTitle(title);
-        builder.setPositiveButton(getResources().getString(R.string.btnOk), null);
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
     private void sendRequestToServer() {
         if(!isConnected()){
             createDialog(getResources().getString(R.string.alertTitleInternetConnection),
@@ -204,78 +191,26 @@ public class ShowAdsActivity extends AppCompatActivity {
     private boolean isConnected(){
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(
                 Activity.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-        return networkInfo != null && networkInfo.isConnected();
+        return connectionProvider.isConnected(connectivityManager);
     }
 
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-
         @Override
         protected String doInBackground(String... urls) {
-            return POST(urls[0], json);
+            return connectionProvider.POST(urls[0], json);
         }
 
         @Override
         protected void onPostExecute(String result) {
             if(result.equalsIgnoreCase(getResources().getString(R.string.responseOk))) {
+                String jsonFromServer = connectionProvider.getJson();
+
                 if(jsonFromServer != null && !jsonFromServer.isEmpty()) {
                     fillActivityContent(jsonFromServer);
                 }
             } else {
                 Log.d(LOG_TAG, "get advertisements response - " + result);
             }
-        }
-    }
-
-    private String POST(String urlString, String json){
-        String result = "";
-
-        DataOutputStream dataOutputStream;
-
-        try{
-            URL url = new URL(urlString);
-            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-
-            connection.setRequestProperty("Content-Type","application/json");
-            connection.setRequestMethod("POST");
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
-            connection.connect();
-
-            dataOutputStream = new DataOutputStream(connection.getOutputStream ());
-
-            byte[] data = json.getBytes("UTF-8");
-
-            dataOutputStream.write(data);
-            dataOutputStream.flush ();
-            dataOutputStream.close ();
-
-            result = connection.getResponseMessage();
-            jsonFromServer = convertInputStreamToString(connection.getInputStream());
-        } catch (IOException e) {
-            Log.d(LOG_TAG, "Can't send json file!");
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    private String convertInputStreamToString(InputStream is) throws IOException {
-        if (is != null) {
-            StringBuilder sb = new StringBuilder();
-            String line;
-
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line).append("\n");
-                }
-            } finally {
-                is.close();
-            }
-            return sb.toString();
-        } else {
-            return "";
         }
     }
 
@@ -295,5 +230,9 @@ public class ShowAdsActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AdvertisementActivity.class);
         intent.putExtra("advertisement", ads.get(position));
         startActivityForResult(intent, 1);
+    }
+
+    private void createDialog(String title, String message) {
+        dialogProvider.createDialog(title, message, this, getResources().getString(R.string.btnOk));
     }
 }

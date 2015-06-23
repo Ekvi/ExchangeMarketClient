@@ -88,4 +88,17 @@ public class JsonHelper {
 
         return json;
     }
+
+    public JSONObject createJson(String userId)  {
+        JSONObject json = new JSONObject();
+
+        try {
+            json.put(USER_ID, userId);
+        } catch (JSONException e) {
+            Log.d(LOG_TAG, "Can't create json file!");
+            e.printStackTrace();
+        }
+
+        return json;
+    }
 }

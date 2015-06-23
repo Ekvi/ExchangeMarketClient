@@ -1,9 +1,8 @@
 package com.ekvilan.exchangemarket.view.activities;
 
-import android.accounts.Account;
+
 import android.accounts.AccountManager;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -21,15 +20,12 @@ import android.widget.Toast;
 
 import com.ekvilan.exchangemarket.R;
 import com.ekvilan.exchangemarket.models.Advertisement;
+import com.ekvilan.exchangemarket.utils.ConnectionProvider;
 import com.ekvilan.exchangemarket.utils.DateUtils;
 import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.utils.Validator;
-
-
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.ekvilan.exchangemarket.view.ActivityProvider;
+import com.ekvilan.exchangemarket.view.DialogProvider;
 
 
 public class AddAdvertisementActivity extends AppCompatActivity {
@@ -51,6 +47,9 @@ public class AddAdvertisementActivity extends AppCompatActivity {
 
     private Validator validator;
     private JsonHelper jsonHelper;
+    private ActivityProvider activityProvider;
+    private ConnectionProvider connectionProvider;
+    private DialogProvider dialogProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +58,9 @@ public class AddAdvertisementActivity extends AppCompatActivity {
 
         validator = new Validator();
         jsonHelper = new JsonHelper();
+        activityProvider = new ActivityProvider();
+        connectionProvider = new ConnectionProvider();
+        dialogProvider = new DialogProvider();
 
         initView();
         setUpToolBar();
@@ -175,13 +177,7 @@ public class AddAdvertisementActivity extends AppCompatActivity {
     }
 
     private void createDialog(String title, String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message);
-        builder.setTitle(title);
-        builder.setPositiveButton(getResources().getString(R.string.btnOk), null);
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        dialogProvider.createDialog(title, message, this, getResources().getString(R.string.btnOk));
     }
 
     private Advertisement createAdvertisement() {
@@ -205,10 +201,10 @@ public class AddAdvertisementActivity extends AppCompatActivity {
     }
 
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-
         @Override
         protected String doInBackground(String... urls) {
-            return POST(urls[0], createAdvertisement());
+            String json = jsonHelper.createJson(createAdvertisement()).toString();
+            return connectionProvider.POST(urls[0], json);
         }
 
         @Override
@@ -222,49 +218,9 @@ public class AddAdvertisementActivity extends AppCompatActivity {
         }
     }
 
-    private String POST(String urlString, Advertisement advertisement){
-        String result = "";
-        String json = jsonHelper.createJson(advertisement).toString();
-
-        DataOutputStream dataOutputStream;
-
-        try{
-            URL url = new URL(urlString);
-            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-
-            connection.setRequestProperty("Content-Type","application/json");
-            connection.setRequestMethod("POST");
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
-            connection.connect();
-
-            dataOutputStream = new DataOutputStream(connection.getOutputStream ());
-
-            byte[] data = json.getBytes("UTF-8");
-
-            dataOutputStream.write(data);
-            dataOutputStream.flush ();
-            dataOutputStream.close ();
-
-            result = connection.getResponseMessage();
-        } catch (IOException e) {
-            Log.d(LOG_TAG, "Can't send json file!");
-            e.printStackTrace();
-        }
-
-        return result;
-    }
-
     private String getUserId() {
-        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
-        Account[] accounts = manager.getAccountsByType("com.google");
-
-        String userId = "";
-        if(accounts.length > 0) {
-            userId = accounts[0].name;
-        }
-
-        return userId;
+        AccountManager accountManager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        return activityProvider.getUserId(accountManager);
     }
 
     @Override
