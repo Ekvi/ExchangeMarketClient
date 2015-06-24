@@ -30,6 +30,7 @@
     <string name="alertTitleInternetConnection">Ошибка соединения с интернетом</string>
     <string name="alertInternetConnectionMessage">Проверьте подключение к интернету.</string>
     <string name="sendMessage">Ваше обьявление опубликовано.</string>
+    <string name="deleteMessage">Ваше обьявление успешно удалено.</string>
     <string name="responseOk">OK</string>
     <string name="cityChoice">Выберите город</string>
     <string name="showCity">&gt;</string>
@@ -50,4 +51,8 @@
     <string name="adsHeaderSum">Сумма</string>
     <string name="adsHeaderRate">Курс</string>
     <string name="searchSettingsTitle">Параметры поиска</string>
+    <string name="btnDel">Удалить объявление</string>
+    <string name="usdSign">$</string>
+    <string name="euroSign">€</string>
+    <string name="rubSign">P</string>
 </resources>

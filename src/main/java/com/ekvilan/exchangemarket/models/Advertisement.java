@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Advertisement implements Parcelable {
+    private Long id;
     private String userId;
     private String city;
     private String action;
@@ -34,6 +35,22 @@ public class Advertisement implements Parcelable {
         this.area = area;
         this.comment = comment;
         this.date = date;
+    }
+
+    public Advertisement(long id, String userId, String city, String action,
+                         String currency, String sum, String rate, String phone,
+                         String area, String comment, String date) {
+
+        this(userId, city, action, currency, sum, rate, phone, area, comment, date);
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUserId() {
@@ -123,6 +140,7 @@ public class Advertisement implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
         dest.writeString(userId);
         dest.writeString(city);
         dest.writeString(action);
@@ -146,6 +164,7 @@ public class Advertisement implements Parcelable {
     };
 
     private void readFromParcel(Parcel parcel) {
+        id = parcel.readLong();
         userId = parcel.readString();
         city = parcel.readString();
         action = parcel.readString();

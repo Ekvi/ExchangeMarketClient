@@ -15,6 +15,7 @@ import java.util.List;
 public class JsonHelper {
     private String LOG_TAG = "myLog";
 
+    private final String ID = "id";
     private final String USER_ID = "userId";
     private final String CITY = "city";
     private final String ACTION_USER_CHOICE = "action";
@@ -37,11 +38,11 @@ public class JsonHelper {
             for(int i = 0; i < array.length(); i++) {
                 JSONObject json = array.getJSONObject(i);
 
-                Advertisement advertisement = new Advertisement(json.getString(USER_ID),
-                        json.getString(CITY), json.getString(ACTION_USER_CHOICE),
-                        json.getString(CURRENCY_USER_CHOICE), json.getString(SUM),
-                        json.getString(RATE), json.getString(PHONE), json.getString(AREA),
-                        json.getString(COMMENT), json.getString(DATE));
+                Advertisement advertisement = new Advertisement(json.getLong(ID),
+                        json.getString(USER_ID), json.getString(CITY),
+                        json.getString(ACTION_USER_CHOICE), json.getString(CURRENCY_USER_CHOICE),
+                        json.getString(SUM), json.getString(RATE), json.getString(PHONE),
+                        json.getString(AREA), json.getString(COMMENT), json.getString(DATE));
 
                 ads.add(advertisement);
             }
@@ -90,10 +91,18 @@ public class JsonHelper {
     }
 
     public JSONObject createJson(String userId)  {
+        return create(USER_ID, userId);
+    }
+
+    public JSONObject createJson(long id)  {
+        return create(ID, id);
+    }
+
+    private JSONObject create(String name, Object value) {
         JSONObject json = new JSONObject();
 
         try {
-            json.put(USER_ID, userId);
+            json.put(name, value);
         } catch (JSONException e) {
             Log.d(LOG_TAG, "Can't create json file!");
             e.printStackTrace();

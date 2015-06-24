@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/advertisement_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
@@ -10,8 +11,9 @@
         layout="@layout/advertisement_tool_bar" />
 
     <RelativeLayout
+        android:id="@+id/contentLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/advertisement_tool_bar">
 
         <TextView
@@ -40,15 +42,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_toRightOf="@id/tvCurrency"
-            android:layout_toEndOf="@id/tvCurrency"
-            android:paddingLeft="20dp"/>
+            android:layout_below="@id/tvSum" />
         <TextView
             android:id="@+id/tvPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_below="@id/tvAction"
+            android:layout_below="@id/tvRate"
             android:paddingTop="10dp"/>
         <TextView
             android:id="@+id/tvArea"
@@ -63,7 +63,6 @@
             android:textSize="20sp"
             android:layout_below="@id/tvArea"
             android:paddingTop="10dp"/>
-
-        </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
