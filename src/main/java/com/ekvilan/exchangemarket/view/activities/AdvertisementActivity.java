@@ -142,10 +142,10 @@ public class AdvertisementActivity extends AppCompatActivity {
             currency.setText(getResources().getString(R.string.eurMessage));
         }
 
-        rate.setText("Курс " + advertisement.getRate());
-        phone.setText("Телефон для связи: " + advertisement.getPhone());
+        rate.setText(advertisement.getRate());
+        phone.setText(advertisement.getPhone());
         String cityArea = advertisement.getArea().isEmpty() ? "не указан" : advertisement.getArea();
-        area.setText("Район города: " + cityArea);
+        area.setText(cityArea);
         comment.setText(advertisement.getComment());
     }
 

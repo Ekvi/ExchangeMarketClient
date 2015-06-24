@@ -55,4 +55,7 @@
     <string name="usdSign">$</string>
     <string name="euroSign">€</string>
     <string name="rubSign">P</string>
+    <string name="cityArea">Район города:</string>
+    <string name="phoneText">Телефон для связи:</string>
+    <string name="rateText">Курс</string>
 </resources>

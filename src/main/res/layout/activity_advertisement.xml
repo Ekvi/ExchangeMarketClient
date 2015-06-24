@@ -14,12 +14,16 @@
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/advertisement_tool_bar">
 
         <TextView
             android:id="@+id/tvAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:textSize="20sp"  />
         <TextView
             android:id="@+id/tvSum"
@@ -28,7 +32,8 @@
             android:textSize="20sp"
             android:layout_toRightOf="@id/tvAction"
             android:layout_toEndOf="@id/tvAction"
-            android:paddingLeft="5dp"/>
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp" />
         <TextView
             android:id="@+id/tvCurrency"
             android:layout_width="wrap_content"
@@ -36,26 +41,64 @@
             android:textSize="20sp"
             android:layout_toRightOf="@id/tvSum"
             android:layout_toEndOf="@id/tvSum"
-            android:paddingLeft="5dp" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp" />
+        <TextView
+            android:id="@+id/rateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/rateText"
+            android:layout_below="@id/tvAction"/>
         <TextView
             android:id="@+id/tvRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_below="@id/tvSum" />
+            android:layout_toRightOf="@id/rateText"
+            android:layout_toEndOf="@id/rateText"
+            android:layout_below="@id/tvAction"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp" />
+        <TextView
+            android:id="@+id/phoneText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/phoneText"
+            android:layout_below="@id/rateText"
+            android:paddingTop="10dp" />
         <TextView
             android:id="@+id/tvPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_below="@id/tvRate"
-            android:paddingTop="10dp"/>
+            android:layout_below="@id/rateText"
+            android:layout_toRightOf="@id/phoneText"
+            android:layout_toEndOf="@id/phoneText"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp" />
+        <TextView
+            android:id="@+id/areaText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/cityArea"
+            android:layout_below="@id/tvPhone"/>
         <TextView
             android:id="@+id/tvArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_below="@id/tvPhone"/>
+            android:layout_below="@id/tvPhone"
+            android:layout_toRightOf="@id/areaText"
+            android:layout_toEndOf="@id/areaText"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp" />
         <TextView
             android:id="@+id/tvComment"
             android:layout_width="wrap_content"
