@@ -68,5 +68,34 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp" />
     </RelativeLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rates_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/add_panel"
+        android:background="@drawable/main_component" >
+        <TextView
+            android:id="@+id/tvShowRatesMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:text="@string/ratesMessage"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
+        <Button
+            android:id="@+id/btnRates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="@string/btnRates"
+            android:layout_below="@+id/tvShowRatesMessage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp" />
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -4,6 +4,7 @@ package com.ekvilan.exchangemarket.utils;
 import android.util.Log;
 
 import com.ekvilan.exchangemarket.models.Advertisement;
+import com.ekvilan.exchangemarket.models.Rates;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +29,12 @@ public class JsonHelper {
     private final String DATE = "date";
     private final String ACTIONS_LIST= "actions";
     private final String CURRENCIES_LIST= "currencies";
+    private final String USD_BUY= "usdBuy";
+    private final String USD_SALE= "usdSale";
+    private final String EUR_BUY= "eurBuy";
+    private final String EUR_SALE= "eurSale";
+    private final String RUB_BUY= "rubBuy";
+    private final String RUB_SALE= "rubSale";
 
     public List<Advertisement> readJson(String jsonFromServer) {
         List<Advertisement> ads = new ArrayList<>();
@@ -51,6 +58,29 @@ public class JsonHelper {
             e.printStackTrace();
         }
         return ads;
+    }
+
+    public List<Rates> readRatesJson(String jsonFromServer) {
+        List<Rates> ratesList = new ArrayList<>();
+
+        try {
+            JSONArray array = new JSONArray(jsonFromServer);
+
+            for(int i = 0; i < array.length(); i++) {
+                JSONObject json = array.getJSONObject(i);
+
+                Rates rates = new Rates(json.getString(USD_BUY), json.getString(USD_SALE),
+                        json.getString(EUR_BUY), json.getString(EUR_SALE),
+                        json.getString(RUB_BUY), json.getString(RUB_SALE));
+
+                ratesList.add(rates);
+            }
+        } catch (JSONException e) {
+            Log.d(LOG_TAG, "Can't parse json!");
+            e.printStackTrace();
+        }
+
+        return ratesList;
     }
 
     public JSONObject createJson(Advertisement advertisement)  {

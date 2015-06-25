@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnShow;
     private Button btnAdd;
     private Button myAds;
+    private Button btnRates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         btnShow = (Button)findViewById(R.id.btnShow);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         myAds = (Button) findViewById(R.id.myAds);
+        btnRates = (Button) findViewById(R.id.btnRates);
     }
 
     private void initToolBar() {
@@ -56,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 callActivity(ShowMyAdsActivity.class);
+            }
+        });
+
+        btnRates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callActivity(RatesActivity.class);
             }
         });
     }

@@ -44,6 +44,10 @@
             android:name=".view.activities.AdvertisementActivity"
             android:label="@string/title_activity_advertisement" >
         </activity>
+        <activity
+            android:name=".view.activities.RatesActivity"
+            android:label="@string/title_activity_rates" >
+        </activity>
     </application>
 
 </manifest>

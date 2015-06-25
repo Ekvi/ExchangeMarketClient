@@ -19,6 +19,10 @@ public class ConnectionProvider {
     private String LOG_TAG = "myLog";
     private String jsonFromServer;
 
+    public String POST(String urlString){
+        return POST(urlString, "");
+    }
+
     public String POST(String urlString, String json){
         String result = "";
 
