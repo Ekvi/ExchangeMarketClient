@@ -12,44 +12,42 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/header_element_border"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:text="@string/adsHeaderDate"
-        android:paddingLeft="5dp" />
+        android:paddingLeft="5dp"  />
     <TextView
         android:id="@+id/tvAction"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/header_element_border"
-        android:textSize="20sp"
-        android:text="@string/adsHeaderAction"
-        android:paddingLeft="5dp" />
+        android:textSize="18sp" />
     <TextView
         android:id="@+id/tvCurrency"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/header_element_border"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:text="@string/adsHeaderCurrency"
-        android:paddingLeft="5dp" />
+        android:paddingLeft="3dp" />
     <TextView
         android:id="@+id/tvSum"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/header_element_border"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:text="@string/adsHeaderSum"
-        android:paddingLeft="5dp" />
+        android:paddingLeft="5dp"/>
     <TextView
         android:id="@+id/tvRate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/header_element_border"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:text="@string/adsHeaderRate"
-        android:paddingLeft="5dp" />
+        android:paddingLeft="5dp"/>
 
 </LinearLayout>

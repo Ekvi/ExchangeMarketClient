@@ -43,7 +43,7 @@
     <string name="city_name">city_name</string>
     <string name="tvCityContent">tvCityContent</string>
     <string name="searchSettings">Фильтр поиска</string>
-    <string name="myAdsTitle">Ваши обьявления</string>
+    <string name="myAdsTitle">Мои обьявления</string>
     <string name="adsSaleMessage">Продам</string>
     <string name="adsBuyMessage">Куплю</string>
     <string name="adsUsdMessage">долларов</string>

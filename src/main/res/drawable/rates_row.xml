@@ -4,10 +4,10 @@
 
     <gradient
         android:angle="0"
-        android:startColor="#A5D6A7"
-        android:endColor="#BCAAA4"
+        android:startColor="@color/ratesRowStart"
+        android:endColor="@color/ratesRowEnd"
         android:type="linear"/>
 
-    <stroke android:width="1dip" android:color="#cccccc" />
+    <stroke android:width="1dip" android:color="@color/rowBorder" />
 
 </shape>

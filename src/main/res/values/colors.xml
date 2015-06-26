@@ -8,7 +8,8 @@
     <color name="teal100">#B2DFDB</color>
     <color name="teal300">#4DB6AC</color>
     <color name="teal200">#80CBC4</color>
-    <color name="buttonBackground">#E0E0E0</color>
+    <color name="buttonStart">#E0E0E0</color>
+    <color name="buttonEnd">#D7CCC8</color>
     <color name="buttonBorder">#BDBDBD</color>
     <color name="mainBackgroundStart">#C8E6C9</color>
     <color name="mainBackgroundEnd">#D7CCC8</color>
@@ -18,4 +19,8 @@
     <color name="toolbarComponent">#00695C</color>
     <color name="toolbarComponentBorder">#004D40</color>
     <color name="black">#000000</color>
+    <color name="ratesRowStart">#A5D6A7</color>
+    <color name="ratesRowEnd">#BCAAA4</color>
+    <color name="ratesHeaderStart">#81C784</color>
+    <color name="ratesHeaderEnd">#A1887F</color>
 </resources>

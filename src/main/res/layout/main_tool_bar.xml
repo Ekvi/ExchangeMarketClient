@@ -10,7 +10,7 @@
         android:id="@+id/myAds"
         android:layout_height="48dp"
         android:layout_width="48dp"
-        android:background="@drawable/astro"
+        android:background="@drawable/my_ads"
         android:layout_gravity="start"  />
 
     <TextView

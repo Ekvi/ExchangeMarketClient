@@ -12,35 +12,33 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="20sp"
-        android:paddingLeft="5dp" />
+        android:textSize="12sp" />
     <TextView
         android:id="@+id/tvAction"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="20sp"
-        android:paddingLeft="5dp" />
+        android:textSize="17sp" />
     <TextView
         android:id="@+id/tvCurrency"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="20sp"
-        android:paddingLeft="5dp" />
+        android:textSize="17sp"
+        android:paddingLeft="3dp" />
     <TextView
         android:id="@+id/tvSum"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:paddingLeft="5dp" />
     <TextView
         android:id="@+id/tvRate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:paddingLeft="5dp" />
 
 </LinearLayout>

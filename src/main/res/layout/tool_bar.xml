@@ -21,5 +21,4 @@
         android:layout_gravity="center"
         android:paddingTop="5dp" />
 
-
 </android.support.v7.widget.Toolbar>

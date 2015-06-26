@@ -18,7 +18,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_below="@id/advertisement_tool_bar">
-
         <TextView
             android:id="@+id/tvAction"
             android:layout_width="wrap_content"

@@ -13,9 +13,9 @@
         android:textSize="18sp"
         android:text="@string/usd"
         android:textColor="@color/textColor"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginLeft="20dp"
@@ -27,9 +27,9 @@
         android:textSize="18sp"
         android:text="@string/eur"
         android:textColor="@color/textColor"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="5dp"
         android:layout_marginEnd="5dp" />
     <TextView
@@ -39,8 +39,8 @@
         android:textSize="18sp"
         android:text="@string/rub"
         android:textColor="@color/textColor"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:layout_marginTop="20dp" />
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="15dp" />
 
 </android.support.v7.widget.Toolbar>
