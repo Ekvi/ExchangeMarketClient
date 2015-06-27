@@ -19,6 +19,7 @@ import com.ekvilan.exchangemarket.R;
 import com.ekvilan.exchangemarket.models.Rates;
 import com.ekvilan.exchangemarket.utils.ConnectionProvider;
 import com.ekvilan.exchangemarket.utils.JsonHelper;
+import com.ekvilan.exchangemarket.view.ActivityProvider;
 import com.ekvilan.exchangemarket.view.DialogProvider;
 
 import java.util.List;
@@ -41,6 +42,7 @@ public class RatesActivity extends AppCompatActivity {
     private DialogProvider dialogProvider;
     private ConnectionProvider connectionProvider;
     private JsonHelper jsonHelper;
+    private ActivityProvider activityProvider;
 
     private List<Rates> ratesList;
 
@@ -52,6 +54,7 @@ public class RatesActivity extends AppCompatActivity {
         dialogProvider = new DialogProvider();
         connectionProvider = new ConnectionProvider();
         jsonHelper = new JsonHelper();
+        activityProvider = new ActivityProvider();
 
         initToolBar();
         initView();
@@ -143,7 +146,9 @@ public class RatesActivity extends AppCompatActivity {
     }
 
     private void fillActivityContent(String json) {
-        ratesList = jsonHelper.readRatesJson(json);
+        List<Object> entities = jsonHelper.readJson(true, json);
+        ratesList = activityProvider.transformToRates(entities);
+
         setUsdRates();
     }
 

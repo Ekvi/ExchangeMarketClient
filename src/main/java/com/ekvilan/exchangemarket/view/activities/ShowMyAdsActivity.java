@@ -132,7 +132,8 @@ public class ShowMyAdsActivity extends Activity {
     }
 
     private void fillActivityContent(String json) {
-        ads = jsonHelper.readJson(json);
+        List<Object> entities = jsonHelper.readJson(false, json);
+        ads = activityProvider.transformToAdvertisements(entities);
 
         recyclerView.setAdapter(new AdvertisementAdapter(this, ads));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

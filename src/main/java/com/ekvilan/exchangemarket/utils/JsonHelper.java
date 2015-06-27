@@ -36,51 +36,35 @@ public class JsonHelper {
     private final String RUB_BUY= "rubBuy";
     private final String RUB_SALE= "rubSale";
 
-    public List<Advertisement> readJson(String jsonFromServer) {
-        List<Advertisement> ads = new ArrayList<>();
+    public List<Object> readJson(boolean isRates, String jsonFromServer) {
+        List<Object> entities = new ArrayList<>();
 
         try {
             JSONArray array = new JSONArray(jsonFromServer);
 
             for(int i = 0; i < array.length(); i++) {
-                JSONObject json = array.getJSONObject(i);
-
-                Advertisement advertisement = new Advertisement(json.getLong(ID),
-                        json.getString(USER_ID), json.getString(CITY),
-                        json.getString(ACTION_USER_CHOICE), json.getString(CURRENCY_USER_CHOICE),
-                        json.getString(SUM), json.getString(RATE), json.getString(PHONE),
-                        json.getString(AREA), json.getString(COMMENT), json.getString(DATE));
-
-                ads.add(advertisement);
+                entities.add(createEntity(isRates, array.getJSONObject(i)));
             }
         } catch (JSONException e) {
             Log.d(LOG_TAG, "Can't parse json!");
             e.printStackTrace();
         }
-        return ads;
+
+        return entities;
     }
 
-    public List<Rates> readRatesJson(String jsonFromServer) {
-        List<Rates> ratesList = new ArrayList<>();
-
-        try {
-            JSONArray array = new JSONArray(jsonFromServer);
-
-            for(int i = 0; i < array.length(); i++) {
-                JSONObject json = array.getJSONObject(i);
-
-                Rates rates = new Rates(json.getString(USD_BUY), json.getString(USD_SALE),
-                        json.getString(EUR_BUY), json.getString(EUR_SALE),
-                        json.getString(RUB_BUY), json.getString(RUB_SALE));
-
-                ratesList.add(rates);
-            }
-        } catch (JSONException e) {
-            Log.d(LOG_TAG, "Can't parse json!");
-            e.printStackTrace();
+    private Object createEntity(boolean isRates, JSONObject json) throws JSONException {
+        if(isRates) {
+            return new Rates(json.getString(USD_BUY), json.getString(USD_SALE),
+                    json.getString(EUR_BUY), json.getString(EUR_SALE),
+                    json.getString(RUB_BUY), json.getString(RUB_SALE));
+        } else {
+            return new Advertisement(json.getLong(ID),
+                    json.getString(USER_ID), json.getString(CITY),
+                    json.getString(ACTION_USER_CHOICE), json.getString(CURRENCY_USER_CHOICE),
+                    json.getString(SUM), json.getString(RATE), json.getString(PHONE),
+                    json.getString(AREA), json.getString(COMMENT), json.getString(DATE));
         }
-
-        return ratesList;
     }
 
     public JSONObject createJson(Advertisement advertisement)  {

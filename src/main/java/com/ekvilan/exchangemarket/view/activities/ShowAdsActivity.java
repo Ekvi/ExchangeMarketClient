@@ -23,6 +23,7 @@ import com.ekvilan.exchangemarket.models.Advertisement;
 import com.ekvilan.exchangemarket.utils.ConnectionProvider;
 import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.utils.Validator;
+import com.ekvilan.exchangemarket.view.ActivityProvider;
 import com.ekvilan.exchangemarket.view.DialogProvider;
 import com.ekvilan.exchangemarket.view.adapters.AdvertisementAdapter;
 import com.ekvilan.exchangemarket.view.listeners.RecyclerItemClickListener;
@@ -44,6 +45,7 @@ public class ShowAdsActivity extends AppCompatActivity {
     private JsonHelper jsonHelper;
     private ConnectionProvider connectionProvider;
     private DialogProvider dialogProvider;
+    private ActivityProvider activityProvider;
 
     private String json;
     private List<Advertisement> ads;
@@ -56,6 +58,7 @@ public class ShowAdsActivity extends AppCompatActivity {
         jsonHelper = new JsonHelper();
         connectionProvider = new ConnectionProvider();
         dialogProvider = new DialogProvider();
+        activityProvider = new ActivityProvider();
 
         initView();
         addListeners();
@@ -215,7 +218,8 @@ public class ShowAdsActivity extends AppCompatActivity {
     }
 
     private void fillActivityContent(String json) {
-        ads = jsonHelper.readJson(json);
+        List<Object> entities = jsonHelper.readJson(false, json);
+        ads = activityProvider.transformToAdvertisements(entities);
 
         recyclerView.setAdapter(new AdvertisementAdapter(this, ads));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
