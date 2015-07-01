@@ -26,11 +26,11 @@ import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.utils.Validator;
 import com.ekvilan.exchangemarket.view.ActivityProvider;
 import com.ekvilan.exchangemarket.view.DialogProvider;
+import com.ekvilan.exchangemarket.view.Urls;
 
 
 public class AddAdvertisementActivity extends AppCompatActivity {
     private String LOG_TAG = "myLog";
-    private final String SERVER_URL = "http://exchangemarket-ekvi.rhcloud.com/advertisement/add";
 
     private Button btnAdd;
     private EditText etSum;
@@ -102,7 +102,7 @@ public class AddAdvertisementActivity extends AppCompatActivity {
                         createDialog(getResources().getString(R.string.alertTitleInternetConnection),
                                 getResources().getString(R.string.alertInternetConnectionMessage));
                     } else {
-                        new HttpAsyncTask().execute(SERVER_URL);
+                        new HttpAsyncTask().execute(Urls.ADVERTISEMENT_ADD.getValue());
                     }
                 }
             }

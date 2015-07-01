@@ -25,6 +25,7 @@ import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.utils.Validator;
 import com.ekvilan.exchangemarket.view.ActivityProvider;
 import com.ekvilan.exchangemarket.view.DialogProvider;
+import com.ekvilan.exchangemarket.view.Urls;
 import com.ekvilan.exchangemarket.view.adapters.AdvertisementAdapter;
 import com.ekvilan.exchangemarket.view.listeners.RecyclerItemClickListener;
 
@@ -34,7 +35,6 @@ import java.util.List;
 
 public class ShowAdsActivity extends AppCompatActivity {
     private String LOG_TAG = "myLog";
-    private final String SERVER_URL = "http://exchangemarket-ekvi.rhcloud.com/advertisement/get";
 
     private TextView tvCity;
     private ImageView searchSettings;
@@ -198,7 +198,7 @@ public class ShowAdsActivity extends AppCompatActivity {
             createDialog(getResources().getString(R.string.alertTitleInternetConnection),
                     getResources().getString(R.string.alertInternetConnectionMessage));
         } else {
-            new HttpAsyncTask().execute(SERVER_URL);
+            new HttpAsyncTask().execute(Urls.ADVERTISEMENT_GET.getValue());
         }
     }
 

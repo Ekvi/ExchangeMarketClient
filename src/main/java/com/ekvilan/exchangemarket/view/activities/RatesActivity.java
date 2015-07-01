@@ -21,12 +21,12 @@ import com.ekvilan.exchangemarket.utils.ConnectionProvider;
 import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.view.ActivityProvider;
 import com.ekvilan.exchangemarket.view.DialogProvider;
+import com.ekvilan.exchangemarket.view.Urls;
 
 import java.util.List;
 
 public class RatesActivity extends AppCompatActivity {
     private String LOG_TAG = "myLog";
-    private final String SERVER_URL = "http://exchangemarket-ekvi.rhcloud.com/rates/get";
 
     private TextView tvUsd;
     private TextView tvEur;
@@ -115,7 +115,7 @@ public class RatesActivity extends AppCompatActivity {
                     this,
                     getResources().getString(R.string.btnOk));
         } else {
-            new HttpAsyncTask().execute(SERVER_URL);
+            new HttpAsyncTask().execute(Urls.RATES_GET.getValue());
         }
     }
 

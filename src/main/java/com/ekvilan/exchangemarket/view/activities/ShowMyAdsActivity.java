@@ -18,6 +18,7 @@ import com.ekvilan.exchangemarket.utils.ConnectionProvider;
 import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.view.ActivityProvider;
 import com.ekvilan.exchangemarket.view.DialogProvider;
+import com.ekvilan.exchangemarket.view.Urls;
 import com.ekvilan.exchangemarket.view.adapters.AdvertisementAdapter;
 import com.ekvilan.exchangemarket.view.listeners.RecyclerItemClickListener;
 
@@ -26,7 +27,6 @@ import java.util.List;
 
 public class ShowMyAdsActivity extends Activity {
     private String LOG_TAG = "myLog";
-    private final String SERVER_URL = "http://exchangemarket-ekvi.rhcloud.com/advertisement/getOwn";
 
     private RecyclerView recyclerView;
     private ImageView imageAddAds;
@@ -105,7 +105,7 @@ public class ShowMyAdsActivity extends Activity {
                     this,
                     getResources().getString(R.string.btnOk));
         } else {
-            new HttpAsyncTask().execute(SERVER_URL);
+            new HttpAsyncTask().execute(Urls.ADVERTISEMENT_GET_OWN.getValue());
         }
     }
 
