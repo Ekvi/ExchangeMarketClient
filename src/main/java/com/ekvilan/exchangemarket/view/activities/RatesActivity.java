@@ -2,6 +2,7 @@ package com.ekvilan.exchangemarket.view.activities;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
@@ -115,7 +116,10 @@ public class RatesActivity extends AppCompatActivity {
                     this,
                     getResources().getString(R.string.btnOk));
         } else {
-            new HttpAsyncTask().execute(Urls.RATES_GET.getValue());
+            new HttpAsyncTask(
+                    dialogProvider.createProgressDialog(
+                            this, getResources().getString(R.string.loadingMessage)))
+                    .execute(Urls.RATES_GET.getValue());
         }
     }
 
@@ -126,6 +130,17 @@ public class RatesActivity extends AppCompatActivity {
     }
 
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        private ProgressDialog progress;
+
+        private HttpAsyncTask(ProgressDialog progress){
+            this.progress = progress;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progress.show();
+        }
+
         @Override
         protected String doInBackground(String... urls) {
             return connectionProvider.POST(urls[0]);
@@ -133,6 +148,7 @@ public class RatesActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            progress.dismiss();
             if(result.equalsIgnoreCase(getResources().getString(R.string.responseOk))) {
                 String jsonFromServer = connectionProvider.getJson();
 

@@ -3,6 +3,7 @@ package com.ekvilan.exchangemarket.view.activities;
 
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -102,7 +103,11 @@ public class AddAdvertisementActivity extends AppCompatActivity {
                         createDialog(getResources().getString(R.string.alertTitleInternetConnection),
                                 getResources().getString(R.string.alertInternetConnectionMessage));
                     } else {
-                        new HttpAsyncTask().execute(Urls.ADVERTISEMENT_ADD.getValue());
+                        new HttpAsyncTask(
+                                dialogProvider.createProgressDialog(
+                                        AddAdvertisementActivity.this, getResources()
+                                                .getString(R.string.addingMessage)))
+                                .execute(Urls.ADVERTISEMENT_ADD.getValue());
                     }
                 }
             }
@@ -201,6 +206,17 @@ public class AddAdvertisementActivity extends AppCompatActivity {
     }
 
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        private ProgressDialog progress;
+
+        private HttpAsyncTask(ProgressDialog progress){
+            this.progress = progress;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progress.show();
+        }
+
         @Override
         protected String doInBackground(String... urls) {
             String json = jsonHelper.createJson(createAdvertisement()).toString();
@@ -209,6 +225,7 @@ public class AddAdvertisementActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            progress.dismiss();
             if(result.equalsIgnoreCase(getResources().getString(R.string.responseOk))) {
                 Toast.makeText(getBaseContext(),
                         getResources().getString(R.string.sendMessage), Toast.LENGTH_LONG).show();

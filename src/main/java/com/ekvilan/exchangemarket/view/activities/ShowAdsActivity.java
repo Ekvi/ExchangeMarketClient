@@ -1,6 +1,7 @@
 package com.ekvilan.exchangemarket.view.activities;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
@@ -198,7 +199,10 @@ public class ShowAdsActivity extends AppCompatActivity {
             createDialog(getResources().getString(R.string.alertTitleInternetConnection),
                     getResources().getString(R.string.alertInternetConnectionMessage));
         } else {
-            new HttpAsyncTask().execute(Urls.ADVERTISEMENT_GET.getValue());
+            new HttpAsyncTask(
+                    dialogProvider.createProgressDialog(
+                            this,getResources().getString(R.string.loadingMessage)))
+                    .execute(Urls.ADVERTISEMENT_GET.getValue());
         }
     }
 
@@ -209,6 +213,17 @@ public class ShowAdsActivity extends AppCompatActivity {
     }
 
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        private ProgressDialog progress;
+
+        private HttpAsyncTask(ProgressDialog progress){
+            this.progress = progress;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progress.show();
+        }
+
         @Override
         protected String doInBackground(String... urls) {
             return connectionProvider.POST(urls[0], json);
@@ -216,6 +231,7 @@ public class ShowAdsActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            progress.dismiss();
             if(result.equalsIgnoreCase(getResources().getString(R.string.responseOk))) {
                 String jsonFromServer = connectionProvider.getJson();
 

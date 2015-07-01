@@ -2,6 +2,7 @@ package com.ekvilan.exchangemarket.view.activities;
 
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
@@ -105,7 +106,10 @@ public class ShowMyAdsActivity extends Activity {
                     this,
                     getResources().getString(R.string.btnOk));
         } else {
-            new HttpAsyncTask().execute(Urls.ADVERTISEMENT_GET_OWN.getValue());
+            new HttpAsyncTask(
+                    dialogProvider.createProgressDialog(
+                            this, getResources().getString(R.string.loadingMessage)))
+                    .execute(Urls.ADVERTISEMENT_GET_OWN.getValue());
         }
     }
 
@@ -116,6 +120,17 @@ public class ShowMyAdsActivity extends Activity {
     }
 
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        private ProgressDialog progress;
+
+        private HttpAsyncTask(ProgressDialog progress){
+            this.progress = progress;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progress.show();
+        }
+
         @Override
         protected String doInBackground(String... urls) {
             return connectionProvider.POST(urls[0], jsonRequest);
@@ -123,6 +138,7 @@ public class ShowMyAdsActivity extends Activity {
 
         @Override
         protected void onPostExecute(String result) {
+            progress.dismiss();
             if(result.equalsIgnoreCase(getResources().getString(R.string.responseOk))) {
                 String jsonFromServer = connectionProvider.getJson();
 

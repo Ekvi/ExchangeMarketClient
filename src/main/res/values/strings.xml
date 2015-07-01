@@ -74,4 +74,8 @@
     <string name="sendValueClassName">className</string>
     <string name="nameShowAdsActivity">ShowAdsActivity</string>
     <string name="noAdsMessage">Нет объявлений</string>
+    <string name="loadingMessage">Пожалуйста подождите, идёт получение данных&#8230;</string>
+    <string name="removingMessage">Удаление&#8230;</string>
+    <string name="addingMessage">Пожалуйста подождите&#8230;</string>
 </resources>
+
