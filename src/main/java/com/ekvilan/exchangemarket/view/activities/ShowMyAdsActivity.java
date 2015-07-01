@@ -23,9 +23,10 @@ import com.ekvilan.exchangemarket.view.listeners.RecyclerItemClickListener;
 
 import java.util.List;
 
+
 public class ShowMyAdsActivity extends Activity {
     private String LOG_TAG = "myLog";
-    private final String SERVER_URL = "http://192.168.1.100:8080/advertisement/getOwn";
+    private final String SERVER_URL = "http://exchangemarket-ekvi.rhcloud.com/advertisement/getOwn";
 
     private RecyclerView recyclerView;
     private ImageView imageAddAds;
@@ -68,8 +69,11 @@ public class ShowMyAdsActivity extends Activity {
     private void addListeners() {
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        callAdvertisementActivity(position);
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        if(ads != null && ads.size() > 0) {
+                            callAdvertisementActivity(position);
+                        }
                     }
                 })
         );
@@ -84,7 +88,7 @@ public class ShowMyAdsActivity extends Activity {
 
     private void callAdvertisementActivity(int position) {
         Intent intent = new Intent(this, AdvertisementActivity.class);
-        intent.putExtra("advertisement", ads.get(position));
+        intent.putExtra(getResources().getString(R.string.sendValueAdvertisement), ads.get(position));
         startActivityForResult(intent, 1);
     }
 
@@ -137,5 +141,11 @@ public class ShowMyAdsActivity extends Activity {
 
         recyclerView.setAdapter(new AdvertisementAdapter(this, ads));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        sendRequestToServer();
     }
 }

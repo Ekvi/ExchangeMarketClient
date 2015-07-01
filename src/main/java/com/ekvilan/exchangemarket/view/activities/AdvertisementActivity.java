@@ -2,6 +2,7 @@ package com.ekvilan.exchangemarket.view.activities;
 
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -25,7 +26,7 @@ import com.ekvilan.exchangemarket.view.DialogProvider;
 
 
 public class AdvertisementActivity extends AppCompatActivity {
-    private final String SERVER_URL = "http://192.168.1.100:8080/advertisement/remove";
+    private final String SERVER_URL = "http://exchangemarket-ekvi.rhcloud.com/advertisement/remove";
     private String LOG_TAG = "myLog";
 
     private TextView action;
@@ -47,6 +48,8 @@ public class AdvertisementActivity extends AppCompatActivity {
 
     private Advertisement advertisement;
     private String jsonRequest;
+    private String savedRequestJson;
+    private String className;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +61,20 @@ public class AdvertisementActivity extends AppCompatActivity {
         dialogProvider = new DialogProvider();
         activityProvider = new ActivityProvider();
 
-        advertisement = getIntent().getExtras().getParcelable("advertisement");
-
+        getExtraValues();
         initView();
         setUpContent(advertisement);
         setUpToolBar(advertisement);
+    }
+
+    private void getExtraValues() {
+        advertisement = getIntent()
+                .getExtras()
+                .getParcelable(getResources().getString(R.string.sendValueAdvertisement));
+        savedRequestJson = getIntent()
+                .getStringExtra(getResources().getString(R.string.sendValueJson));
+        className = getIntent()
+                .getStringExtra(getResources().getString(R.string.sendValueClassName));
     }
 
     private void initView() {
@@ -124,14 +136,27 @@ public class AdvertisementActivity extends AppCompatActivity {
     }
 
     private void setUpContent(Advertisement advertisement) {
+        setActionTextView(advertisement);
+        setCurrencyTextView(advertisement);
+
+        String cityArea = advertisement.getArea().isEmpty() ? "не указан" : advertisement.getArea();
+        area.setText(cityArea);
+        sum.setText(advertisement.getSum());
+        rate.setText(advertisement.getRate());
+        phone.setText(advertisement.getPhone());
+        comment.setText(advertisement.getComment());
+    }
+
+    private void setActionTextView(Advertisement advertisement) {
         if(advertisement.getAction().equalsIgnoreCase(
                 getResources().getString(R.string.saleMessage))) {
             action.setText(getResources().getString(R.string.adsSaleMessage));
         } else {
             action.setText(getResources().getString(R.string.adsBuyMessage));
         }
+    }
 
-        sum.setText(advertisement.getSum());
+    private void setCurrencyTextView(Advertisement advertisement) {
         if(advertisement.getCurrency().equalsIgnoreCase(
                 getResources().getString(R.string.usdMessage))) {
             currency.setText(getResources().getString(R.string.adsUsdMessage));
@@ -141,12 +166,6 @@ public class AdvertisementActivity extends AppCompatActivity {
         } else {
             currency.setText(getResources().getString(R.string.eurMessage));
         }
-
-        rate.setText(advertisement.getRate());
-        phone.setText(advertisement.getPhone());
-        String cityArea = advertisement.getArea().isEmpty() ? "не указан" : advertisement.getArea();
-        area.setText(cityArea);
-        comment.setText(advertisement.getComment());
     }
 
     private void setUpToolBar(Advertisement advertisement) {
@@ -191,6 +210,7 @@ public class AdvertisementActivity extends AppCompatActivity {
             if(result.equalsIgnoreCase(getResources().getString(R.string.responseOk))) {
                 Toast.makeText(getBaseContext(),
                         getResources().getString(R.string.deleteMessage), Toast.LENGTH_LONG).show();
+                returnToPreviousActivity(className, savedRequestJson);
             } else {
                 Log.d(LOG_TAG, "add advertisement response - " + result);
             }
@@ -199,5 +219,25 @@ public class AdvertisementActivity extends AppCompatActivity {
 
     private void createDialog(String title, String message) {
         dialogProvider.createDialog(title, message, this, getResources().getString(R.string.btnOk));
+    }
+
+    private void returnToPreviousActivity(String className, String json) {
+        String name = getResources().getString(R.string.nameShowAdsActivity);
+        if(className != null && className.equals(name)) {
+            setResult(RESULT_OK, createIntent(json));
+            finish();
+        } else {
+            this.finish();
+        }
+    }
+
+    private Intent createIntent(String json) {
+        Intent intent = new Intent(this, ShowAdsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra(getResources().getString(R.string.sendValueJson), json);
+        intent.putExtra(getResources().getString(R.string.sendValueClassName), className);
+        intent.putExtra(getResources().getString(R.string.city_name), advertisement.getCity());
+
+        return intent;
     }
 }

@@ -69,4 +69,9 @@
     <string name="rowBanks">В банках</string>
     <string name="rowMarket">Рыночный</string>
     <string name="rowNbu">НБУ</string>
+    <string name="sendValueAdvertisement">Advertisement</string>
+    <string name="sendValueJson">request json</string>
+    <string name="sendValueClassName">className</string>
+    <string name="nameShowAdsActivity">ShowAdsActivity</string>
+    <string name="noAdsMessage">Нет объявлений</string>
 </resources>

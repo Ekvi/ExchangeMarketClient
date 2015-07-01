@@ -30,7 +30,7 @@ import com.ekvilan.exchangemarket.view.DialogProvider;
 
 public class AddAdvertisementActivity extends AppCompatActivity {
     private String LOG_TAG = "myLog";
-    private final String SERVER_URL = "http://192.168.1.100:8080/advertisement/add";
+    private final String SERVER_URL = "http://exchangemarket-ekvi.rhcloud.com/advertisement/add";
 
     private Button btnAdd;
     private EditText etSum;

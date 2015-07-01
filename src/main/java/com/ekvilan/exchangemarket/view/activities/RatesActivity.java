@@ -26,7 +26,7 @@ import java.util.List;
 
 public class RatesActivity extends AppCompatActivity {
     private String LOG_TAG = "myLog";
-    private final String SERVER_URL = "http://192.168.1.100:8080/rates/get";
+    private final String SERVER_URL = "http://exchangemarket-ekvi.rhcloud.com/rates/get";
 
     private TextView tvUsd;
     private TextView tvEur;

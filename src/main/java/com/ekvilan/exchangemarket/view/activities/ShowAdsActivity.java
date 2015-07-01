@@ -31,16 +31,17 @@ import com.ekvilan.exchangemarket.view.listeners.RecyclerItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ShowAdsActivity extends AppCompatActivity {
     private String LOG_TAG = "myLog";
-    private final String SERVER_URL = "http://192.168.1.100:8080/advertisement/get";
+    private final String SERVER_URL = "http://exchangemarket-ekvi.rhcloud.com/advertisement/get";
 
     private TextView tvCity;
     private ImageView searchSettings;
     private CheckBox actionBuy, actionSale;
     private CheckBox usd, eur, rub;
-    private RecyclerView recyclerView;
     private ImageView imageAddAds;
+    private RecyclerView recyclerView;
 
     private JsonHelper jsonHelper;
     private ConnectionProvider connectionProvider;
@@ -62,23 +63,22 @@ public class ShowAdsActivity extends AppCompatActivity {
 
         initView();
         addListeners();
+
+        fillActivityContent();
     }
 
     private void initView() {
         tvCity = (TextView) findViewById(R.id.tvCity);
         searchSettings = (ImageView) findViewById(R.id.searchSettings);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         imageAddAds = (ImageView) findViewById(R.id.addAds);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
     }
 
     private void addListeners() {
         tvCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ShowAdsActivity.this, ShowEntitiesActivity.class);
-                intent.putExtra(getResources().getString(R.string.tvCityContent),
-                        getResources().getString(R.string.cityChoice));
-                startActivityForResult(intent, 1);
+                callShowEntitiesActivity();
             }
         });
 
@@ -89,26 +89,37 @@ public class ShowAdsActivity extends AppCompatActivity {
             }
         });
 
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        if(ads != null && ads.size() > 0) {
+                            callAdvertisementActivity(ads.get(position));
+                        }
+                    }
+                })
+        );
+
         imageAddAds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callAddAdvertisementActivity();
             }
         });
-
-        recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        callAdvertisementActivity(position);
-                    }
-                })
-        );
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (intent == null) {return;}
         tvCity.setText(intent.getStringExtra(getResources().getString(R.string.city_name)));
+
+        String className = intent.getStringExtra(getResources().getString(R.string.sendValueClassName));
+        if (className != null) {
+            if(className.equals(getResources().getString(R.string.nameShowAdsActivity))) {
+                json = intent.getStringExtra(getResources().getString(R.string.sendValueJson));
+                sendRequestToServer();
+            }
+        }
     }
 
     private void showSettingsWindow() {
@@ -217,22 +228,39 @@ public class ShowAdsActivity extends AppCompatActivity {
         }
     }
 
-    private void fillActivityContent(String json) {
-        List<Object> entities = jsonHelper.readJson(false, json);
-        ads = activityProvider.transformToAdvertisements(entities);
+    private void fillActivityContent() {
+        List<Advertisement> ads = new ArrayList<>();
 
         recyclerView.setAdapter(new AdvertisementAdapter(this, ads));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void callAddAdvertisementActivity() {
-        Intent intent = new Intent(this, AddAdvertisementActivity.class);
+    private void fillActivityContent(String json) {
+        List<Object> entities = jsonHelper.readJson(false, json);
+        ads = activityProvider.transformToAdvertisements(entities);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new AdvertisementAdapter(this, ads));
+    }
+
+    private void callShowEntitiesActivity() {
+        Intent intent = new Intent(this, ShowEntitiesActivity.class);
+        intent.putExtra(getResources().getString(R.string.tvCityContent),
+                getResources().getString(R.string.cityChoice));
         startActivityForResult(intent, 1);
     }
 
-    private void callAdvertisementActivity(int position) {
+    private void callAddAdvertisementActivity() {
+        Intent intent = new Intent(this, AddAdvertisementActivity.class);
+        startActivity(intent);
+    }
+
+    private void callAdvertisementActivity(Advertisement advertisement) {
         Intent intent = new Intent(this, AdvertisementActivity.class);
-        intent.putExtra("advertisement", ads.get(position));
+        intent.putExtra(getResources().getString(R.string.sendValueAdvertisement), advertisement);
+        intent.putExtra(getResources().getString(R.string.sendValueJson), json);
+        intent.putExtra(getResources().getString(R.string.sendValueClassName),
+                getResources().getString(R.string.nameShowAdsActivity));
         startActivityForResult(intent, 1);
     }
 
