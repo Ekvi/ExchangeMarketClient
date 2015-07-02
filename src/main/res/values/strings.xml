@@ -28,6 +28,7 @@
     <string name="alertSumMessage">Поле \"сумма\" должно содержать целое число.</string>
     <string name="alertRateMessage">Поле \"курс\" должно содержать число.</string>
     <string name="alertCityMessage">Выберите город.</string>
+    <string name="alertPhoneMessage">Телефон должен быть введён в формате +380121234567</string>
     <string name="alertEmptyFieldMessage">Поля \"сумма\", \"курс\" и \"телефон\" обязательны к заполнению.</string>
     <string name="btnOk">OK</string>
     <string name="alertTitleInternetConnection">Ошибка соединения с интернетом</string>
@@ -59,7 +60,7 @@
     <string name="euroSign">€</string>
     <string name="rubSign">P</string>
     <string name="cityArea">Район города:</string>
-    <string name="phoneText">Телефон для связи:</string>
+    <string name="phoneText">Номер телефона:</string>
     <string name="rateText">Курс</string>
     <string name="usd">USD</string>
     <string name="eur">EUR</string>
@@ -78,5 +79,6 @@
     <string name="removingMessage">Удаление&#8230;</string>
     <string name="addingMessage">Пожалуйста подождите&#8230;</string>
     <string name="makeCall">Позвонить</string>
+    <string name="startPhoneNumber">+380</string>
 </resources>
 

@@ -40,4 +40,18 @@ public class ValidatorTest {
         assertFalse(validator.validateRate("test"));
         assertFalse(validator.validateRate(".90"));
     }
+
+    @Test
+    public void testValidatePhoneNumber() {
+        assertTrue(validator.isCorrectPhoneNumber("+380977645634"));
+        assertTrue(validator.isCorrectPhoneNumber("+380501239087"));
+        assertTrue(validator.isCorrectPhoneNumber("+380677639074"));
+        assertFalse(validator.isCorrectPhoneNumber("380677639074"));
+        assertFalse(validator.isCorrectPhoneNumber("+80677639074"));
+        assertFalse(validator.isCorrectPhoneNumber("+30677639074"));
+        assertFalse(validator.isCorrectPhoneNumber("+3806717637864"));
+        assertFalse(validator.isCorrectPhoneNumber("+38067176378"));
+        assertFalse(validator.isCorrectPhoneNumber("+380671test"));
+        assertFalse(validator.isCorrectPhoneNumber("+38067 9894654"));
+    }
 }

@@ -168,9 +168,9 @@ public class AddAdvertisementActivity extends AppCompatActivity {
             createDialog(getResources().getString(R.string.alertTitleEmptyFields),
                     getResources().getString(R.string.alertRateMessage));
             return false;
-        } else if(validator.isEmptyField(etPhone.getText().toString())){
+        } else if(!validator.isCorrectPhoneNumber(etPhone.getText().toString())){
             createDialog(getResources().getString(R.string.alertTitleEmptyFields),
-                    getResources().getString(R.string.alertEmptyFieldMessage));
+                    getResources().getString(R.string.alertPhoneMessage));
             return false;
         } else if(validator.isEmptyCity(tvCity.getText().toString())){
             createDialog(getResources().getString(R.string.alertTitleEmptyFields),

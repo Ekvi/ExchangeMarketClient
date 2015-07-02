@@ -18,18 +18,20 @@ public class JsonHelperTest {
 
     @Test
     public void testReadJson() {
-        String json = "[{\"userId\":\"test@gmail.com\",\"city\":\"Odessa\", \"action\":\"покупка\", \"currency\":\"usd\", \"sum\":\"200\", \"rate\":\"20.50\", \"phone\":\"80976571223\", \"area\":\"Таирова\", \"comment\":\"можно частями\", \"date\":\"7 июня 2015\"}, {\"userId\":\"secondUser@gmail.com\",\"city\":\"Odessa\", \"action\":\"покупка\", \"currency\":\"eur\", \"sum\":\"500\", \"rate\":\"25.50\", \"phone\":\"80976571223\", \"area\":\"Центр\", \"comment\":\"могу подьехать\", \"date\":\"7 июня 2015\"}]";
+        String json = "[{\"id\":\"24\",\"userId\":\"test@gmail.com\",\"city\":\"Odessa\", \"action\":\"покупка\", \"currency\":\"usd\", \"sum\":\"200\", \"rate\":\"20.50\", \"phone\":\"80976571223\", \"area\":\"Таирова\", \"comment\":\"можно частями\", \"date\":\"7 июня 2015\"}, {\"id\":\"25\",\"userId\":\"secondUser@gmail.com\",\"city\":\"Odessa\", \"action\":\"покупка\", \"currency\":\"eur\", \"sum\":\"500\", \"rate\":\"25.50\", \"phone\":\"80976571223\", \"area\":\"Центр\", \"comment\":\"могу подьехать\", \"date\":\"7 июня 2015\"}]";
 
-        List<Advertisement> advertisements = jsonHelper.readJson(json);
+        List<Object> advertisements = jsonHelper.readJson(false, json);
+        Advertisement ad1 = (Advertisement)advertisements.get(0);
+        Advertisement ad2 = (Advertisement)advertisements.get(1);
 
         assertTrue(!advertisements.isEmpty());
         assertEquals(2, advertisements.size());
 
-        assertEquals("Odessa", advertisements.get(0).getCity());
-        assertEquals("покупка", advertisements.get(0).getAction());
-        assertEquals("200", advertisements.get(0).getSum());
-        assertEquals("80976571223", advertisements.get(1).getPhone());
-        assertEquals("могу подьехать", advertisements.get(1).getComment());
+        assertEquals("Odessa", ad1.getCity());
+        assertEquals("покупка", ad1.getAction());
+        assertEquals("200", ad1.getSum());
+        assertEquals("80976571223", ad2.getPhone());
+        assertEquals("могу подьехать", ad2.getComment());
     }
 
     @Test

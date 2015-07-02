@@ -55,4 +55,10 @@ public class Validator {
     public boolean isEmptyCity(String cityName) {
         return cityName.equalsIgnoreCase(ShowEntitiesActivity.CHOICE_CITY_MESSAGE);
     }
+
+    public boolean isCorrectPhoneNumber(String number) {
+        Pattern pattern = Pattern.compile("^\\+380[0-9]{2}[0-9]{7}$");
+        Matcher matcher = pattern.matcher(number);
+        return matcher.find();
+    }
 }
