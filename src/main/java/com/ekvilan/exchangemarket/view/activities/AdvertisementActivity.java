@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class AdvertisementActivity extends AppCompatActivity {
     private TextView toolBarAction;
     private TextView toolBarCurrency;
     private Button btnDel;
+    private Button btnMakeCall;
 
     private ConnectionProvider connectionProvider;
     private JsonHelper jsonHelper;
@@ -64,6 +66,7 @@ public class AdvertisementActivity extends AppCompatActivity {
 
         getExtraValues();
         initView();
+        addListeners();
         setUpContent(advertisement);
         setUpToolBar(advertisement);
     }
@@ -86,10 +89,11 @@ public class AdvertisementActivity extends AppCompatActivity {
         phone = (TextView) findViewById(R.id.tvPhone);
         area = (TextView) findViewById(R.id.tvArea);
         comment = (TextView) findViewById(R.id.tvComment);
+        btnMakeCall = (Button) findViewById(R.id.btnMakeCall);
 
         if(getUserId().equals(advertisement.getUserId())) {
             addDelButton();
-            addListeners();
+            addButtonDelListener();
         }
 
         toolBarCity = (TextView) findViewById(R.id.city);
@@ -113,7 +117,7 @@ public class AdvertisementActivity extends AppCompatActivity {
 
         params.addRule(RelativeLayout.CENTER_HORIZONTAL);
         params.addRule(RelativeLayout.BELOW, R.id.contentLayout);
-        params.setMargins(0, 10, 0, 0);
+        params.setMargins(0, 20, 0, 0);
 
         btnDel.setLayoutParams(params);
 
@@ -122,6 +126,15 @@ public class AdvertisementActivity extends AppCompatActivity {
     }
 
     private void addListeners() {
+        btnMakeCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makeCall(advertisement.getPhone());
+            }
+        });
+    }
+
+    private void addButtonDelListener() {
         btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -255,5 +268,11 @@ public class AdvertisementActivity extends AppCompatActivity {
         intent.putExtra(getResources().getString(R.string.city_name), advertisement.getCity());
 
         return intent;
+    }
+
+    private void makeCall(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        startActivity(intent);
     }
 }

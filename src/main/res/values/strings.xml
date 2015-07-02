@@ -77,5 +77,6 @@
     <string name="loadingMessage">Пожалуйста подождите, идёт получение данных&#8230;</string>
     <string name="removingMessage">Удаление&#8230;</string>
     <string name="addingMessage">Пожалуйста подождите&#8230;</string>
+    <string name="makeCall">Позвонить</string>
 </resources>
 
