@@ -104,13 +104,14 @@ public class AdvertisementActivity extends AppCompatActivity {
     private void addDelButton() {
         btnDel = new Button(this);
         btnDel.setText(getResources().getString(R.string.btnDel));
+        btnDel.setTextColor(getResources().getColor(R.color.textColor));
 
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){
             btnDel.setBackgroundDrawable(
-                    ResourcesCompat.getDrawable(getResources(), R.drawable.button, null));
+                    ResourcesCompat.getDrawable(getResources(), R.drawable.remove_button, null));
         }else{
             btnDel.setBackground(
-                    ResourcesCompat.getDrawable(getResources(), R.drawable.button, null));
+                    ResourcesCompat.getDrawable(getResources(), R.drawable.remove_button, null));
         }
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

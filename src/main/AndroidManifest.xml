@@ -10,44 +10,57 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".view.activities.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".view.activities.AddAdvertisementActivity"
-            android:label="@string/title_activity_add_advertisement" >
+            android:label="@string/title_activity_add_advertisement"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>
         <activity
             android:name=".view.activities.ShowEntitiesActivity"
-            android:label="@string/title_activity_show_entities" >
+            android:label="@string/title_activity_show_entities"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ekvilan.exchangemarket.view.activities.AddAdvertisementActivity" />
         </activity>
         <activity
             android:name=".view.activities.ShowAdsActivity"
-            android:label="@string/title_activity_show_ads_activity" >
+            android:label="@string/title_activity_show_ads_activity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>
         <activity
             android:name=".view.activities.ShowMyAdsActivity"
-            android:label="@string/title_activity_show_my_ads" >
+            android:label="@string/title_activity_show_my_ads"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>
         <activity
             android:name=".view.activities.AdvertisementActivity"
-            android:label="@string/title_activity_advertisement" >
+            android:label="@string/title_activity_advertisement"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity
             android:name=".view.activities.RatesActivity"
-            android:label="@string/title_activity_rates" >
+            android:label="@string/title_activity_rates"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
     </application>
 
