@@ -59,9 +59,7 @@ public class RatesActivity extends AppCompatActivity {
 
         initToolBar();
         initView();
-
         sendRequestToServer();
-
         addListeners();
     }
 

@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:paddingBottom="10dp"
         android:layout_below="@+id/show_panel"
         android:background="@drawable/main_component" >
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:paddingBottom="10dp"
         android:layout_below="@+id/add_panel"
         android:background="@drawable/main_component" >

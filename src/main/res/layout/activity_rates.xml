@@ -59,7 +59,7 @@
             <TextView
                 android:layout_weight="1"
                 android:text="@string/rowBanks"
-                android:textSize="20sp"
+                android:textSize="19sp"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
@@ -69,7 +69,7 @@
             <TextView
                 android:layout_weight="1"
                 android:id="@+id/banks_buy"
-                android:textSize="26sp"
+                android:textSize="25sp"
                 android:textStyle="italic"
                 android:textColor="@color/textColor"
                 android:paddingLeft="5dp"
@@ -80,7 +80,7 @@
             <TextView
                 android:layout_weight="1"
                 android:id="@+id/banks_sale"
-                android:textSize="26sp"
+                android:textSize="25sp"
                 android:textStyle="italic"
                 android:textColor="@color/textColor"
                 android:paddingLeft="5dp"
@@ -97,7 +97,7 @@
             <TextView
                 android:layout_weight="1"
                 android:text="@string/rowMarket"
-                android:textSize="20sp"
+                android:textSize="19sp"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
@@ -107,7 +107,7 @@
             <TextView
                 android:id="@+id/market_buy"
                 android:layout_weight="1"
-                android:textSize="26sp"
+                android:textSize="25sp"
                 android:textStyle="italic"
                 android:textColor="@color/textColor"
                 android:paddingLeft="5dp"
@@ -118,7 +118,7 @@
             <TextView
                 android:id="@+id/market_sale"
                 android:layout_weight="1"
-                android:textSize="26sp"
+                android:textSize="25sp"
                 android:textStyle="italic"
                 android:textColor="@color/textColor"
                 android:paddingLeft="5dp"
@@ -135,7 +135,7 @@
             <TextView
                 android:layout_weight="1"
                 android:text="@string/rowNbu"
-                android:textSize="20sp"
+                android:textSize="19sp"
                 android:textStyle="bold"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
@@ -145,7 +145,7 @@
             <TextView
                 android:id="@+id/nbu_buy"
                 android:layout_weight="1"
-                android:textSize="26sp"
+                android:textSize="25sp"
                 android:textStyle="italic"
                 android:textColor="@color/textColor"
                 android:paddingLeft="5dp"
@@ -155,7 +155,7 @@
                 android:gravity="center"/>
             <TextView
                 android:layout_weight="1"
-                android:textSize="26sp"
+                android:textSize="25sp"
                 android:textStyle="italic"
                 android:textColor="@color/textColor"
                 android:paddingLeft="5dp"
