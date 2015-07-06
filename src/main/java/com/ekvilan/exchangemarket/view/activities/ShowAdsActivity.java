@@ -31,6 +31,7 @@ import com.ekvilan.exchangemarket.view.adapters.AdvertisementAdapter;
 import com.ekvilan.exchangemarket.view.listeners.RecyclerItemClickListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -114,6 +115,18 @@ public class ShowAdsActivity extends AppCompatActivity {
         if (intent == null) {return;}
         tvCity.setText(intent.getStringExtra(getResources().getString(R.string.city_name)));
 
+        showAdvertisements();
+        update(intent);
+    }
+
+    private void showAdvertisements() {
+        List<String> action = Collections.emptyList();
+        List<String> currency = Collections.emptyList();
+        json = jsonHelper.createJson(tvCity.getText().toString(), action, currency).toString();
+        sendRequestToServer();
+    }
+
+    private void update(Intent intent) {
         String className = intent.getStringExtra(getResources().getString(R.string.sendValueClassName));
         if (className != null) {
             if(className.equals(getResources().getString(R.string.nameShowAdsActivity))) {
