@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/header_element_border"
+        android:background="@drawable/header"
         android:textSize="16sp"
         android:text="@string/adsHeaderDate"
         android:paddingLeft="5dp" />
@@ -19,14 +19,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/header_element_border"
+        android:background="@drawable/header"
         android:textSize="16sp" />
     <TextView
         android:id="@+id/tvCurrency"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/header_element_border"
+        android:background="@drawable/header"
         android:textSize="16sp"
         android:text="@string/adsHeaderCurrency"
         android:paddingLeft="3dp" />
@@ -35,7 +35,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/header_element_border"
+        android:background="@drawable/header"
         android:textSize="16sp"
         android:text="@string/adsHeaderSum"
         android:paddingLeft="5dp"/>
@@ -44,9 +44,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/header_element_border"
+        android:background="@drawable/header"
         android:textSize="16sp"
         android:text="@string/adsHeaderRate"
         android:paddingLeft="5dp"/>
-
 </LinearLayout>
