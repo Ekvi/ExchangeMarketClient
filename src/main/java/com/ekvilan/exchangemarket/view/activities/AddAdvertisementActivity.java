@@ -28,6 +28,8 @@ import com.ekvilan.exchangemarket.utils.Validator;
 import com.ekvilan.exchangemarket.view.ActivityProvider;
 import com.ekvilan.exchangemarket.view.DialogProvider;
 import com.ekvilan.exchangemarket.view.Urls;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 
 public class AddAdvertisementActivity extends AppCompatActivity {
@@ -69,6 +71,8 @@ public class AddAdvertisementActivity extends AppCompatActivity {
         addButtonListeners();
         addRadioGroupListeners();
         addTextViewListener();
+
+        activityProvider.showBanner(findViewById(R.id.adView));
     }
 
     private void initView() {

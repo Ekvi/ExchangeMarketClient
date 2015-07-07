@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.ekvilan.exchangemarket.R;
+import com.ekvilan.exchangemarket.view.ActivityProvider;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initToolBar();
         addButtonListeners();
+
+        ActivityProvider activityProvider = new ActivityProvider();
+        activityProvider.showBanner(findViewById(R.id.adView));
     }
 
     private void initView() {

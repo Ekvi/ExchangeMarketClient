@@ -80,5 +80,6 @@
     <string name="addingMessage">Пожалуйста подождите&#8230;</string>
     <string name="makeCall">Позвонить</string>
     <string name="startPhoneNumber">+380</string>
+    <string name="banner_ad_unit_id"></string>
 </resources>
 

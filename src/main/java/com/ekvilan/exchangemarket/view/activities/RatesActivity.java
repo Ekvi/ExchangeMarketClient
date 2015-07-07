@@ -23,6 +23,8 @@ import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.view.ActivityProvider;
 import com.ekvilan.exchangemarket.view.DialogProvider;
 import com.ekvilan.exchangemarket.view.Urls;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.List;
 
@@ -61,6 +63,8 @@ public class RatesActivity extends AppCompatActivity {
         initView();
         sendRequestToServer();
         addListeners();
+
+        activityProvider.showBanner(findViewById(R.id.adView));
     }
 
     private void initToolBar() {

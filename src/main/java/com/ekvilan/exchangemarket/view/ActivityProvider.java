@@ -3,9 +3,13 @@ package com.ekvilan.exchangemarket.view;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.view.View;
 
+import com.ekvilan.exchangemarket.R;
 import com.ekvilan.exchangemarket.models.Advertisement;
 import com.ekvilan.exchangemarket.models.Rates;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,5 +42,11 @@ public class ActivityProvider {
             rates.add((Rates)o);
         }
         return rates;
+    }
+
+    public void showBanner(View view) {
+        AdView mAdView = (AdView) view;
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 }

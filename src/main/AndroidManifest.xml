@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <meta-data android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -27,7 +30,8 @@
             android:name=".view.activities.AddAdvertisementActivity"
             android:label="@string/title_activity_add_advertisement"
             android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize" >
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".view.activities.ShowEntitiesActivity"
@@ -62,6 +66,8 @@
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
+        <activity android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
     </application>
 
 </manifest>
