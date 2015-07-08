@@ -81,5 +81,6 @@
     <string name="makeCall">Позвонить</string>
     <string name="startPhoneNumber">+380</string>
     <string name="banner_ad_unit_id"></string>
+    <string name="interstitialAd_id"></string>
 </resources>
 

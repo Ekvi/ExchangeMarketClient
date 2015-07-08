@@ -5,7 +5,6 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.view.View;
 
-import com.ekvilan.exchangemarket.R;
 import com.ekvilan.exchangemarket.models.Advertisement;
 import com.ekvilan.exchangemarket.models.Rates;
 import com.google.android.gms.ads.AdRequest;

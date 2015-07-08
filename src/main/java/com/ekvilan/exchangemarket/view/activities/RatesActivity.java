@@ -23,8 +23,6 @@ import com.ekvilan.exchangemarket.utils.JsonHelper;
 import com.ekvilan.exchangemarket.view.ActivityProvider;
 import com.ekvilan.exchangemarket.view.DialogProvider;
 import com.ekvilan.exchangemarket.view.Urls;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 import java.util.List;
 
@@ -151,6 +149,7 @@ public class RatesActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             progress.dismiss();
+
             if(result.equalsIgnoreCase(getResources().getString(R.string.responseOk))) {
                 String jsonFromServer = connectionProvider.getJson();
 
