@@ -81,7 +81,7 @@
     <string name="addingMessage">Пожалуйста подождите&#8230;</string>
     <string name="makeCall">Позвонить</string>
     <string name="startPhoneNumber">+380</string>
-    <string name="banner_ad_unit_id">ca-app-pub-4637654147607031/1396992108</string>
-    <string name="interstitialAd_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="banner_ad_unit_id"></string>
+    <string name="interstitialAd_id"></string>
 </resources>
 
