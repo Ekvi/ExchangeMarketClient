@@ -35,6 +35,7 @@
     <string name="alertInternetConnectionMessage">Проверьте подключение к интернету.</string>
     <string name="sendMessage">Ваше обьявление опубликовано.</string>
     <string name="deleteMessage">Ваше обьявление успешно удалено.</string>
+    <string name="emptyRatesMessage">Не удалось получить данные с сервера.</string>
     <string name="responseOk">OK</string>
     <string name="cityChoice">Выберите город</string>
     <string name="showCity">&gt;</string>
@@ -80,7 +81,7 @@
     <string name="addingMessage">Пожалуйста подождите&#8230;</string>
     <string name="makeCall">Позвонить</string>
     <string name="startPhoneNumber">+380</string>
-    <string name="banner_ad_unit_id"></string>
-    <string name="interstitialAd_id"></string>
+    <string name="banner_ad_unit_id">ca-app-pub-4637654147607031/1396992108</string>
+    <string name="interstitialAd_id">ca-app-pub-3940256099942544/1033173712</string>
 </resources>
 

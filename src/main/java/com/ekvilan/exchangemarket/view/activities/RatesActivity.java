@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.ekvilan.exchangemarket.R;
@@ -152,12 +153,15 @@ public class RatesActivity extends AppCompatActivity {
 
             if(result.equalsIgnoreCase(getResources().getString(R.string.responseOk))) {
                 String jsonFromServer = connectionProvider.getJson();
-
                 if(jsonFromServer != null && !jsonFromServer.isEmpty()) {
                     fillActivityContent(jsonFromServer);
                 }
             } else {
                 Log.d(LOG_TAG, "get rates response - " + result);
+                Toast.makeText(
+                        RatesActivity.this,
+                        getResources().getString(R.string.emptyRatesMessage),
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }

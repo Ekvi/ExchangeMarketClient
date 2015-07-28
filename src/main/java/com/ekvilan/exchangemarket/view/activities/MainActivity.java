@@ -125,6 +125,6 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 isInterstitialShow = false;
             }
-        }, 0, 5, TimeUnit.MINUTES);
+        }, 0, 10, TimeUnit.MINUTES);
     }
 }
